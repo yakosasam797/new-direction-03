@@ -9,20 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ---- soft clean ground (behind both panels) ---- */
+    /* ---- shells ---- */
     --ground:#E6E8ED;
-    /* ---- the two shells: quieter rail, brighter workspace ---- */
-    --side:#F1F3F7;        /* sidebar — a little darker, not a new hue */
-    --side-hover:#E6E9EE;  /* nav hover on the rail */
+    --side:#F9F9FB;           /* sidebar */
+    --side-hover:#EEEFF3;
     --panel:#FFFFFF;
-    --panel-ground:#FFFFFF; /* workspace — brightest reading surface */
-    --surface:#FFFFFF;        /* bento blocks */
-    --surface-2:#F1F4F7;      /* column headers / block heads (clean tint) */
-    --surface-3:#F6F8FA;      /* row hover */
-    --ink:#181B20;
-    --ink-2:#565C66;   /* AA on white for body-muted text */
-    --ink-3:#6C727C;   /* AA on white for small labels & meta */
-    --ink-4:#8A909A;   /* decorative only — icon strokes, dividers */
+    --panel-ground:#FFFFFF;   /* workspace */
+    --surface:#FFFFFF;
+    --surface-2:#F1F4F7;
+    --surface-3:#F6F8FA;
+    /* ---- type: primary / secondary / label. All AA on #F9F9FB and #FFF ---- */
+    --ink:#16181D;     /* titles, values, brand */
+    --ink-2:#3E4550;   /* nav, supporting copy, dates — ~8.5:1 */
+    --ink-3:#545C67;   /* small labels, icons, placeholders — ~6.4:1 */
+    --ink-4:#8A909A;   /* disabled / decorative only */
     --line:#E4E7EC;
     --line-2:#EEF0F3;
     /* ---- identity accents ---- */
@@ -38,10 +38,6 @@
     --warn:#B45309;  --warn-bg:#FBF2E0;  --warn-line:#F0DCB4;
     --bad:#BE3B48;   --bad-bg:#FBEDEE;   --bad-line:#F1D2D6;
     --info:#3D4654;  --info-bg:#F1F4F7;  --info-line:#E4E7EC;
-    /* status tints for group headers (personality + hierarchy) */
-    --gh-accent:#E9F3F1;
-    --gh-bad:#FBF0F1;
-    --gh-ok:#EDF6F0;
     /* soft, light shadows — not dark */
     --blockShadow:0 1px 2px rgba(23,43,77,.045);
     --panelShadow:0 1px 3px rgba(23,43,77,.05);
@@ -95,22 +91,22 @@
   .side-top{display:flex;align-items:center;gap:10px;padding:16px 16px 12px}
   .brand-mark{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;flex:none}
   .brand-name{font-family:'Onest',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.03em;color:var(--ink)}
-  .brand-caret{margin-left:auto;color:var(--ink-3)}
+  .brand-caret{margin-left:auto;color:var(--ink-2)}
 
   .notes{margin:2px 12px 6px;display:flex;align-items:center;height:38px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
   .notes-main{flex:1;display:flex;align-items:center;gap:9px;padding:0 8px 0 12px;height:100%;color:var(--ink);font-size:13px;font-weight:600;cursor:pointer}
-  .notes-main svg{color:var(--ink-3)}
+  .notes-main svg{color:var(--ink-2)}
   .notes-main:hover{background:var(--surface-3)}
   .notes-badge{margin-left:auto;display:inline-grid;place-items:center;min-width:20px;height:18px;padding:0 6px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
   .notes-add{width:38px;height:100%;display:grid;place-items:center;border:none;border-left:1px solid var(--line);background:transparent;color:var(--accent);cursor:pointer}
   .notes-add:hover{background:var(--accent-soft)}
 
   .side-scroll{flex:1;min-height:0;overflow-y:auto;padding:6px 10px 12px}
-  .side-group{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:0 10px;margin:16px 0 6px}
+  .side-group{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:700;padding:0 10px;margin:16px 0 6px}
   .nav-item{display:flex;align-items:center;gap:11px;height:35px;padding:0 11px;border-radius:8px;color:var(--ink-2);font-size:13.5px;font-weight:500;cursor:pointer}
-  .nav-item svg{flex:none;color:var(--ink-3)}
+  .nav-item svg{flex:none;color:var(--ink-2)}
   .nav-item:hover{background:var(--side-hover);color:var(--ink)}
-  .nav-item:hover svg{color:var(--ink-2)}
+  .nav-item:hover svg{color:var(--ink)}
   .nav-item.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
   .nav-item.active svg{color:var(--accent)}
   .side-foot{padding:12px;border-top:1px solid var(--line)}
@@ -121,8 +117,8 @@
   .collapsed .side-collapse .sc-txt{display:none}
   .collapsed .side-collapse svg{transform:rotate(180deg)}
   .credit{display:flex;align-items:center;gap:11px}
-  .credit .ic{width:30px;height:30px;border-radius:8px;background:var(--side-hover);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-3);flex:none}
-  .credit-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2)}
+  .credit .ic{width:30px;height:30px;border-radius:8px;background:var(--side-hover);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);flex:none}
+  .credit-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);font-weight:500}
   .bar{height:4px;border-radius:999px;background:#E4E6EA;overflow:hidden;margin-top:5px}
   .bar>i{display:block;height:100%;width:72%;background:var(--accent);border-radius:999px}
   .btn-up{flex:none;height:30px;padding:0 13px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-family:'Onest',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
@@ -139,18 +135,21 @@
     container-type:inline-size;
     container-name:shell;
   }
-  .topbar{display:flex;align-items:center;gap:8px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--surface);flex:none;min-width:0}
-  .search{flex:1 1 180px;min-width:0;max-width:460px;display:flex;align-items:center;gap:9px;height:40px;padding:0 6px 0 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-3)}
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--surface);flex:none;min-width:0}
+  .back-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;flex:none}
+  .back-btn:hover{background:var(--surface-3);color:var(--ink)}
+  .search{display:flex;align-items:center;gap:9px;height:36px;padding:0 6px 0 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-3);min-width:0}
+  .topbar .search{flex:0 1 340px;max-width:380px}
   .search:focus-within{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
   .search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:inherit;font-size:13.5px;color:var(--ink)}
   .search input::placeholder{color:var(--ink-3)}
-  .search-scope{display:flex;align-items:center;gap:5px;height:28px;padding:0 9px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
+  .search > svg{color:var(--ink-2);flex:none}
+  .search-scope{display:flex;align-items:center;gap:5px;height:26px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
   .search-scope:hover{background:var(--surface-3);color:var(--ink)}
-  .search-scope svg{color:var(--ink-3)}
-  .spacer{flex:1}
-  .icon-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;position:relative}
+  .search-scope svg{color:var(--ink-2)}
+  .icon-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;position:relative;flex:none}
   .icon-btn:hover{background:var(--surface-3);color:var(--ink)}
-  .acct{display:flex;align-items:center;gap:8px;height:40px;padding:0 11px 0 8px;border:1px solid var(--pink-line);border-radius:10px;background:var(--surface);color:var(--pink);font-family:'Onest',sans-serif;font-size:13px;font-weight:600;cursor:pointer;flex:none}
+  .acct{display:flex;align-items:center;gap:4px;height:36px;padding:0 8px 0 6px;border:1px solid var(--pink-line);border-radius:10px;background:var(--surface);color:var(--pink);font-family:'Onest',sans-serif;font-size:13px;font-weight:600;cursor:pointer;flex:none}
   .acct:hover{background:var(--pink-soft)}
   .acct .avatar{width:26px;height:26px}
   .acct svg{color:var(--pink)}
@@ -158,23 +157,27 @@
   .avatar.pink{background:var(--pink-avatar);color:var(--pink);border:1px solid var(--pink-line)}
   .dot-alert{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:999px;background:var(--bad);border:1.5px solid var(--surface)}
 
-  .scroll{flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;background:var(--panel-ground)}
+  .scroll{flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;background:var(--panel-ground);display:flex;flex-direction:column}
   .content{
     --page-pad:clamp(16px, 2.2cqi, 52px);
-    /* checkbox track includes the page inset plus room after the box, before the Day rule */
     --check-col:calc(var(--page-pad) + 46px);
     --it-cols:var(--check-col) 88px 112px minmax(200px, 28rem) minmax(132px, 13rem);
-    --vo-cols:var(--check-col) minmax(160px, 20rem) minmax(128px, 15rem) 120px minmax(140px, 16rem) 148px;
+    --vo-cols:var(--check-col) minmax(160px, 20rem) minmax(128px, 15rem) 120px minmax(140px, 16rem) 176px;
     width:100%;
     max-width:2000px;
     min-width:0;
     margin:0 auto;
     overflow-x:hidden;
-    padding:clamp(16px, 1.5cqi, 32px) var(--page-pad) clamp(36px, 3cqi, 64px);
+    flex:1 0 auto;
+    display:flex;
+    flex-direction:column;
+    min-height:100%;
+    padding:16px var(--page-pad) 0;
   }
 
-  .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-2);margin-bottom:14px}
-  .crumbs svg{color:var(--ink-3)}
+  .crumbs{display:flex;flex-wrap:nowrap;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);min-width:0;flex:1 1 auto;overflow:hidden}
+  .crumbs svg{color:var(--ink-2);flex:none}
+  .crumbs a,.crumbs .here{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .crumbs .here{color:var(--ink);font-weight:600}
 
   /* bento block */
@@ -182,66 +185,80 @@
   .block-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;border-bottom:1px solid var(--line);background:var(--surface-2)}
   .block-head h3{font-size:14.5px;font-weight:700;color:var(--ink)}
 
-  /* record header (bento) — distinctive hero surface */
-  .record{position:relative;border:1px solid var(--line);border-radius:14px;padding:19px 22px;box-shadow:var(--blockShadow);margin-bottom:18px;overflow:visible;min-width:0;
-    background:
-      linear-gradient(100deg, rgba(15,110,99,.075) 0%, rgba(15,110,99,.035) 38%, rgba(15,110,99,0) 82%),
-      var(--surface);
+  .record{
+    display:flex;align-items:center;justify-content:space-between;gap:14px 24px;flex-wrap:wrap;
+    border:1px solid #E3EEEC;border-radius:16px;padding:16px 22px;margin-bottom:8px;overflow:visible;min-width:0;
+    background:linear-gradient(105deg, #F6FBFA 0%, #FBFDFC 42%, #FFFFFF 100%);
   }
-  .rec-top{display:flex;align-items:center;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;margin-bottom:12px;min-width:0;width:100%}
-  .rec-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:var(--ink-2);min-width:0;flex:1 1 12rem}
-  .meta-sep{color:var(--ink-3)}
-  .meta-id{display:inline-flex;align-items:center;gap:5px;height:23px;padding:0 9px;border-radius:7px;border:1px solid var(--line);background:rgba(255,255,255,.75);font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--accent-ink)}
-  .meta-id svg{color:var(--accent);flex:none}
-  .rec-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:18px}
-  .rec-title{font-size:clamp(22px, 1.2cqi + 18px, 28px);font-weight:700;color:var(--ink);letter-spacing:-0.025em;margin-bottom:12px;max-width:min(52rem,100%);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .rec-main{min-width:0;flex:1 1 14rem}
+  .rec-title-row{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin-bottom:8px}
+  .rec-title{font-size:clamp(18px, .8cqi + 16px, 22px);font-weight:700;color:var(--ink);letter-spacing:-.03em;margin:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rec-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);min-width:0}
+  .rec-date{display:inline-flex;align-items:center;gap:6px}
+  .rec-date svg{color:var(--ink-2);flex:none}
+  .meta-sep{color:var(--ink-4)}
+  .bk-ref{
+    display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;
+    border:1px solid #D8DDE3;border-radius:6px;background:#fff;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--ink);letter-spacing:-.01em;
+  }
+  .bk-ref svg{color:var(--ink-2);flex:none}
+  .bk-ref:hover{border-color:#C4D9D5;color:var(--accent-ink)}
+  .bk-ref:hover svg{color:var(--accent)}
+  .q-ref{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--accent-ink)}
+  .q-ref svg{color:var(--accent);flex:none}
+  .q-ref:hover{color:var(--accent)}
+  .tags{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+  .record .tag{height:22px;padding:0 9px;font-size:11.5px}
   .tag{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid transparent;text-decoration:none}
   .tag .d{width:6px;height:6px;border-radius:999px}
   .t-ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}   .t-ok .d{background:var(--ok)}
   .t-warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-line)} .t-warn .d{background:var(--warn)}
   .t-bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad-line)} .t-bad .d{background:var(--bad)}
   .t-info{background:var(--info-bg);color:var(--info);border-color:var(--info-line)} .t-info .d{background:var(--ink-3)}
-  .edited{font-size:12.5px;color:var(--ink-2);margin-left:auto;text-align:right;white-space:nowrap}
 
-  .rec-right{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
-  .owner{text-align:right;max-width:280px}
-  .owner b{font-size:13px;color:var(--ink);font-weight:600}
-  .owner span{display:block;font-size:12px;color:var(--ink-2);margin-top:1px}
+  .rec-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-left:auto}
+  .owner{text-align:right}
+  .owner b{display:block;font-size:13px;color:var(--ink);font-weight:600;line-height:1.2}
+  .owner span{display:block;font-size:11.5px;color:var(--ink-2);margin-top:2px}
   .avstack{display:flex}
-  .avstack .avatar{margin-left:-8px;border:2px solid var(--surface)}
+  .avstack .avatar{margin-left:-8px;border:2px solid #E7F2EF}
   .avstack .avatar:first-child{margin-left:0}
   /* ===== button system =====
-     base .btn + one variant (.btn-primary/-secondary/-ghost/-subtle/-danger)
-     + optional size (.btn-lg/-sm/-xs) + optional .btn-icon (square, icon-only) */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:10px;font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .12s ease,border-color .12s ease,color .12s ease}
+     Four weights, one geometry. Identity lives in fill — not size, not a brand wash.
+     ghost   outline, white, ink + icon     — row actions, secondary chrome
+     subtle  neutral gray fill, ink + icon  — quiet presence, never a teal tint
+     primary solid teal, white + icon       — the one page action
+     secondary solid pink, white + icon     — distinctive send / attach
+     Brand-tint (--accent-soft) is for state (selected, chips), not actions. */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .12s ease,border-color .12s ease,color .12s ease}
   .btn svg{flex:none}
   .btn:disabled{opacity:.5;cursor:not-allowed}
-  /* sizes */
   .btn-lg{height:44px;padding:0 20px;font-size:14.5px;border-radius:11px;gap:9px}
-  .btn-sm{height:32px;padding:0 12px;font-size:12.5px;border-radius:8px;gap:6px}
-  .btn-xs{height:27px;padding:0 10px;font-size:12px;border-radius:7px;gap:5px}
-  /* icon-only (square) */
+  .btn-sm{height:32px;padding:0 11px;font-size:12.5px;border-radius:8px;gap:6px}
+  .btn-xs{height:27px;padding:0 9px;font-size:12px;border-radius:7px;gap:5px}
   .btn-icon{padding:0;width:38px}
   .btn-icon.btn-lg{width:44px}
   .btn-icon.btn-sm{width:32px}
   .btn-icon.btn-xs{width:27px}
-  /* variants */
   .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
   .btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+  .btn-primary:active{background:#094840;border-color:#094840}
   .btn-secondary{background:var(--pink);color:#fff;border-color:var(--pink)}
   .btn-secondary:hover{background:var(--pink-ink);border-color:var(--pink-ink)}
   .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
-  .btn-ghost:hover{background:var(--surface-3);border-color:#D7DBE1}
-  .btn-subtle{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
-  .btn-subtle:hover{background:#DBEBE8}
+  .btn-ghost:hover{background:var(--surface-3);border-color:#D7DBE1;color:var(--ink)}
+  .btn-ghost:active{background:var(--surface-2)}
+  .btn-subtle{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
+  .btn-subtle:hover{background:#E8ECF0;border-color:#D7DBE1;color:var(--ink)}
   .btn-danger{background:var(--surface);color:var(--bad);border-color:var(--bad-line)}
   .btn-danger:hover{background:var(--bad-bg)}
+  .row-acts{display:flex;align-items:center;gap:6px}
 
   /* full tab bar — underline style; More appears only when tabs overflow */
-  .chrome{position:sticky;top:0;z-index:30;background:var(--panel-ground);padding-top:4px;margin:0 calc(var(--page-pad) * -1);padding-left:var(--page-pad);padding-right:var(--page-pad);min-width:0}
-  .tabbar{display:flex;align-items:stretch;gap:2px;margin:16px 0 0;border-bottom:1px solid var(--line);min-width:0;width:100%;max-width:100%}
-  .tab{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--ink-2);font-family:'Onest',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;white-space:nowrap;margin-bottom:-1px;flex:none}
+  .chrome{position:sticky;top:0;z-index:30;background:var(--panel-ground);padding-top:20px;margin:0 calc(var(--page-pad) * -1);padding-left:var(--page-pad);padding-right:var(--page-pad);min-width:0;flex:none}
+  .tabbar{display:flex;align-items:stretch;gap:2px;margin:0;border-bottom:1px solid var(--line);min-width:0;width:100%;max-width:100%}
+  .tab{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 10px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--ink-2);font-family:'Onest',sans-serif;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;margin-bottom:-1px;flex:none}
   .tab:hover{color:var(--ink)}
   .tab.active{color:var(--accent);font-weight:600;border-bottom-color:var(--accent)}
   .tab .chip{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:6px;background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line);font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600}
@@ -250,10 +267,11 @@
   .tab-more-menu.open{display:block}
   .tab-more-menu .tab{display:flex;width:100%;height:auto;padding:9px 12px;border:none;margin:0;border-radius:8px}
   .tab-more-menu .tab.active{background:var(--accent-soft);border-bottom:none}
-  .panels{margin-top:20px}
+  .panels{flex:1;display:flex;flex-direction:column;min-height:0;margin-top:32px}
 
   .panel{display:none}
   .panel.show{display:block}
+  .panel.show:has(.sheet-grow){display:flex;flex-direction:column;flex:1;min-height:0}
 
   /* trip summary — full-bleed property grid, same edge language as the sheet */
   .summary{
@@ -268,15 +286,24 @@
     border-bottom:1px solid var(--line);
     border-left:none;
   }
-  .sf-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+  .sf-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
   .sf-value{display:flex;align-items:center;gap:8px;margin-top:9px;font-family:'Onest',sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);min-width:0}
-  .sf-value svg{color:var(--ink-3);flex:none}
+  .sf-value svg{color:var(--ink-2);flex:none}
   .sf-value .ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .sf-value a{color:var(--accent-ink)}
   .sf-value a:hover{color:var(--accent)}
 
   /* open sheet table — canvas rows, column rules, no outer rectangle */
   .sheet{margin:0 calc(var(--page-pad) * -1);overflow-x:auto;min-width:0;max-width:none}
+  .sheet-grow{flex:1;display:flex;flex-direction:column;min-height:0;overflow-x:auto;overflow-y:hidden}
+  .sheet .row.row-fill{flex:1 1 auto;min-height:28px}
+  .sheet .row.row-fill > *{border-bottom:none;min-height:0;padding:0;background:transparent}
+  .sheet .row.row-fill:hover > *{background:transparent}
+  .sheet-it .row.row-fill::after,
+  .sheet-vo .row.row-fill::after{border:none;background:transparent}
+  .sheet-it .row.row-fill:hover::after,
+  .sheet-vo .row.row-fill:hover::after{background:transparent}
+  .sheet-grow .foot,.sheet-grow .bulk{flex:none}
   .sheet .row-head,
   .sheet .row{
     display:grid;
@@ -343,25 +370,17 @@
   }
   .sheet-it .row-head > :nth-child(2),
   .sheet-it .row > .day-cell{padding-left:16px}
-  /* group header: status-tinted band for hierarchy + personality */
-  .grouphead{display:flex;align-items:center;gap:9px;padding:9px var(--page-pad);border-bottom:1px solid var(--line-2);min-width:0}
-  .grouphead.gh-accent{background:var(--gh-accent)}
-  .grouphead.gh-bad{background:var(--gh-bad)}
-  .grouphead.gh-ok{background:var(--gh-ok)}
-  .grouphead .g-dot{width:8px;height:8px;border-radius:999px}
-  .grouphead .g-label{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:-0.01em}
-  .grouphead .g-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2)}
   .reveal{opacity:0;transition:opacity .12s ease}
   .ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .primary-cell{font-size:13.5px;font-weight:600;color:var(--ink)}
   .muted-cell{font-size:12.5px;color:var(--ink-2)}
   .day-cell{font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600}
   .date-cell{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-2)}
-  .date-cell svg{color:var(--ink-3);flex:none}
+  .date-cell svg{color:var(--ink-2);flex:none}
 
   /* bare inline content icon — no box */
   .cell-lead{display:flex;align-items:center;gap:9px;min-width:0}
-  .cell-lead>svg{color:var(--ink-3);flex:none}
+  .cell-lead>svg{color:var(--ink-2);flex:none}
 
   .cbx{width:18px;height:18px;border:1.6px solid #C6CAD1;border-radius:5px;background:var(--surface);display:grid;place-items:center;cursor:pointer;color:#fff;flex:none}
   .cbx svg{opacity:0;transition:opacity .1s ease}
@@ -370,18 +389,18 @@
   .cbx.some{background:var(--accent);border-color:var(--accent)}
   .cbx.some .dash{width:9px;height:2px;background:#fff;border-radius:2px}
 
-  .vk{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:3px}
+  .vk{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-top:3px}
   .file-link{font-size:13px;font-weight:500}
-  .not-up{font-size:13px;color:var(--ink-3);font-style:italic}
-  .more-btn{width:32px;height:32px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;flex:none}
-  .more-btn:hover{background:var(--surface-3)}
+  .not-up{font-size:13px;color:var(--ink-2);font-style:italic}
+  .more-btn{color:var(--ink-2)}
 
   .bulk{display:none;align-items:center;justify-content:space-between;gap:12px;padding:11px var(--page-pad);border-bottom:1px solid var(--line);background:var(--accent-soft);min-width:0}
   .bulk.show{display:flex}
   .sticky-bulk{display:none;position:sticky;bottom:0;z-index:25;align-items:center;justify-content:space-between;gap:12px;margin:12px calc(var(--page-pad) * -1) 0;padding:12px var(--page-pad);border-top:1px solid var(--line);background:var(--surface);box-shadow:0 -8px 24px rgba(23,43,77,.08)}
   .sticky-bulk.show{display:flex}
   .bulk .lbl{font-size:12.5px;font-weight:600;color:var(--accent-ink)}
-  .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px var(--page-pad);min-width:0}
+  .sheet-grow .bulk{border-top:1px solid var(--line)}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px var(--page-pad) 16px;min-width:0;border-top:1px solid var(--line);background:var(--panel-ground);position:relative;z-index:1}
   .foot .range{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2)}
   .pager{display:flex;align-items:center;gap:5px}
   .pg{min-width:30px;height:30px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;display:grid;place-items:center}
@@ -390,7 +409,7 @@
   .pg:disabled{opacity:1;color:var(--ink-4);border-color:var(--line-2);cursor:not-allowed}
   .pg:disabled:hover{background:var(--surface)}
 
-  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px}
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px;flex:none}
 
   /* empty state for undesigned tabs */
   .empty{border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--blockShadow);padding:56px 24px;text-align:center}
@@ -413,7 +432,7 @@
   .conv-idns{min-width:0;flex:1}
   .conv-row1{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
   .conv-name{font-family:'Onest',sans-serif;font-size:14px;font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .conv-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);flex:none}
+  .conv-time{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-2);flex:none}
   .conv-role{font-size:12px;color:var(--ink-2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .conv-prev{font-size:12.5px;color:var(--ink-2);margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .conv-chips{display:flex;align-items:center;gap:6px;margin-top:9px}
@@ -432,7 +451,7 @@
   .msg-in{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--ink)}
   .msg-out{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px}
   .msg-meta{font-size:11px;margin-top:8px}
-  .msg-in .msg-meta{color:var(--ink-3)}
+  .msg-in .msg-meta{color:var(--ink-2)}
   .msg-out .msg-meta{color:rgba(255,255,255,.82)}
   .msg-att{margin-top:11px;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-3)}
   .att-title{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink)}
@@ -468,12 +487,12 @@
   .nd-ta:focus{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
   .nd-ta::placeholder{color:var(--ink-3)}
   .nd-field{margin-top:16px}
-  .nd-flabel{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:8px}
+  .nd-flabel{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);font-weight:700;margin-bottom:8px}
   .nd-select{position:relative}
   .nd-select-btn{width:100%;display:flex;align-items:center;gap:9px;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--ink);font-family:inherit;font-size:13.5px;cursor:pointer;text-align:left}
   .nd-select-btn:hover{background:var(--surface-3)}
   .nd-select-btn .cv{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .nd-select-btn svg{color:var(--ink-3);flex:none}
+  .nd-select-btn svg{color:var(--ink-2);flex:none}
   .nd-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;max-height:220px;overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:0 12px 30px rgba(20,26,33,.16);padding:5px;z-index:10}
   .nd-menu.open{display:block}
   .nd-opt{padding:9px 11px;border-radius:8px;font-size:13.5px;color:var(--ink);cursor:pointer}
@@ -483,7 +502,7 @@
   .nd-foot{display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--line);flex:none}
 
   /* browse */
-  .nd-search{display:flex;align-items:center;gap:9px;height:40px;padding:0 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-3);margin-bottom:12px}
+  .nd-search{display:flex;align-items:center;gap:9px;height:40px;padding:0 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-3);margin-bottom:12px;color:var(--ink-2)}
   .nd-search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:inherit;font-size:13.5px;color:var(--ink)}
   .nd-filters{display:flex;gap:7px;margin-bottom:16px}
   .nd-fil{height:30px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
@@ -494,7 +513,7 @@
   .nd-note-top{display:flex;align-items:flex-start;gap:9px}
   .nd-note-pin{color:var(--accent);flex:none;margin-top:2px}
   .nd-note-body{font-size:13.5px;line-height:1.55;color:var(--ink)}
-  .nd-note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:11.5px;color:var(--ink-3)}
+  .nd-note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--ink-2)}
   .nd-note-meta b{color:var(--ink-2);font-weight:600}
   .nd-note-rel{font-family:'JetBrains Mono',monospace;color:var(--accent-ink);background:var(--accent-soft);padding:1px 7px;border-radius:6px;font-size:11px}
   .nd-note-acts{display:flex;gap:7px;margin-top:10px;opacity:0;transition:opacity .12s ease}
@@ -502,7 +521,7 @@
   .nd-act{height:27px;padding:0 10px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer}
   .nd-act:hover{background:var(--surface-3);color:var(--ink)}
   .nd-act.danger:hover{background:var(--bad-bg);color:var(--bad);border-color:var(--bad-line)}
-  .nd-empty{padding:40px 12px;text-align:center;color:var(--ink-3);font-size:13px}
+  .nd-empty{padding:40px 12px;text-align:center;color:var(--ink-2);font-size:13px}
 
   [data-tip]{position:relative}
   [data-tip]::after{
@@ -513,9 +532,11 @@
   [data-tip]:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
   button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,.cbx:focus-visible,.nav-item:focus-visible,.tab:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
   .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  .section{margin-bottom:28px}
-  .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap}
-  .section-head h3,.section > h3{font-size:15px;font-weight:700;margin:0}
+  .section{margin-bottom:32px;flex:none}
+  .section-grow{flex:1;display:flex;flex-direction:column;min-height:0;margin-bottom:0}
+  .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;flex:none}
+  .section-grow .section-head{margin-bottom:14px}
+  .section-head h3,.section > h3{font-size:15px;font-weight:700;margin:0;color:var(--ink)}
   @media(prefers-reduced-motion:reduce){
     .frame,.side-collapse svg,.nd,.nd-overlay{transition:none}
   }
@@ -528,14 +549,11 @@
   }
   @media(max-width:900px){
     .topbar{padding:8px 10px;gap:6px;flex-wrap:wrap}
-    .search{max-width:none;height:36px;flex:1 1 100%}
-    .spacer{display:none}
-    .icon-btn{width:36px;height:36px}
+    .topbar .search{max-width:none;flex:1 1 180px}
+    .icon-btn,.back-btn{width:36px;height:36px}
     .acct{height:36px}
     .rec-title{white-space:normal}
-    .edited{white-space:normal;margin-left:0;text-align:left}
-    .rec-top{flex-direction:column;align-items:stretch;gap:8px}
-    .rec-meta{width:100%;flex-basis:100%}
+    .sheet-it .row-fill{display:none}
     .sheet-it .row-head{display:none}
     .sheet.sheet-it .row{
       grid-template-columns:calc(var(--page-pad) + 28px) minmax(0,1fr);
@@ -578,14 +596,11 @@
   /* ----- workspace width: layout that uses extra monitor space ----- */
   @container shell (max-width:900px){
     .topbar{padding:8px 10px;gap:6px;flex-wrap:wrap}
-    .search{max-width:none;height:36px;flex:1 1 100%}
-    .spacer{display:none}
-    .icon-btn{width:36px;height:36px}
+    .topbar .search{max-width:none;flex:1 1 180px}
+    .icon-btn,.back-btn{width:36px;height:36px}
     .acct{height:36px}
     .rec-title{white-space:normal}
-    .edited{white-space:normal;margin-left:0;text-align:left}
-    .rec-top{flex-direction:column;align-items:stretch;gap:8px}
-    .rec-meta{width:100%}
+    .sheet-it .row-fill{display:none}
     .sheet-it .row-head{display:none}
     .sheet.sheet-it .row{
       grid-template-columns:calc(var(--page-pad) + 28px) minmax(0,1fr);
@@ -635,7 +650,7 @@
   }
   @container shell (min-width:1180px){
     .topbar{padding:12px 24px}
-    .search{max-width:520px}
+    .topbar .search{max-width:420px}
     .record{padding:22px 26px}
     .sfield{padding:16px 20px}
     .sfield:nth-child(odd){padding-left:20px}
@@ -654,7 +669,7 @@
     .sfield:nth-child(3n){padding-right:20px}
     .sfield:nth-child(6n+1){border-left:none;padding-left:var(--page-pad)}
     .sfield:nth-child(6n){padding-right:var(--page-pad)}
-    .search{max-width:600px}
+    .topbar .search{max-width:440px}
     .content{
       --it-cols:var(--check-col) 96px 132px minmax(260px, 36rem) minmax(168px, 16rem);
       --vo-cols:var(--check-col) minmax(200px, 24rem) minmax(160px, 17rem) 140px minmax(180px, 19rem) 168px;
@@ -664,7 +679,7 @@
   }
   @container shell (min-width:1760px){
     .topbar{padding:12px 32px}
-    .search{max-width:640px}
+    .topbar .search{max-width:460px}
     .record{padding:24px 30px}
     .sheet .row > *{min-height:56px}
     .content{
@@ -741,12 +756,19 @@
   <main class="workspace">
 
     <div class="topbar">
+      <button class="back-btn" type="button" data-tip="Back to bookings" aria-label="Back to bookings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="#">Operations</a>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        <a href="#">Bookings</a>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        <span class="here">XYZ Family · Dubai</span>
+      </nav>
       <div class="search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C727C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" placeholder="Search anything" aria-label="Search the workspace">
         <button class="search-scope" data-tip="Change search scope" aria-label="Search scope: Query">Query<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
-      <div class="spacer"></div>
       <button class="icon-btn" data-tip="Settings" aria-label="Settings"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6 1.65 1.65 0 0 0 10 3.09V3a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.31.4.55.72.66"/></svg></button>
       <button class="icon-btn" data-tip="Help &amp; support" aria-label="Help and support"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></button>
       <button class="icon-btn" data-tip="Call logs" aria-label="Call logs"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></button>
@@ -757,52 +779,40 @@
     <div class="scroll">
       <div class="content">
 
-        <div class="crumbs">
-          <a href="#">Operations</a>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          <a href="#">Bookings</a>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          <span class="here">XYZ Family · Dubai</span>
-        </div>
-
         <div class="record">
-          <div class="rec-top">
-            <div class="rec-meta">
-              <span>Booked 11 Aug</span><span class="meta-sep">·</span>
-              <span class="meta-id" data-tip="Booking reference"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>BK-2026-000003</span>
-              <span class="meta-sep">·</span><span>from</span>
-              <span class="meta-id" data-tip="Source query"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>Q-1042</span>
-            </div>
-            <div class="edited">Last edited 11 August 2026 by Vrushabh Jain.</div>
-          </div>
-          <div class="rec-head">
-            <div style="min-width:0">
+          <div class="rec-main">
+            <div class="rec-title-row">
               <h1 class="rec-title" title="XYZ Family · Dubai">XYZ Family · Dubai</h1>
               <div class="tags">
                 <span class="tag t-ok"><span class="d"></span>Confirmed</span>
                 <span class="tag t-info" title="Departs 18 Aug 2026"><span class="d"></span>Upcoming</span>
               </div>
             </div>
-            <div class="rec-right">
-              <div class="owner">
-                <b>Vrushabh Jain</b>
-                <span>Owner · Team +2</span>
-              </div>
-              <div class="avstack">
-                <div class="avatar pink" data-tip="Vrushabh Jain · Owner">VJ</div>
-                <div class="avatar" style="background:#FBF2E0;color:#B45309" data-tip="Neha Kapoor">NK</div>
-                <div class="avatar" style="background:#E9F6EE;color:#15803D" data-tip="Meera Iyer">MI</div>
-              </div>
-              <button class="btn btn-primary" type="button" aria-label="Edit booking">Edit booking</button>
+            <div class="rec-meta">
+              <span class="rec-date"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>18 Aug</span>
+              <span class="meta-sep">·</span>
+              <a class="bk-ref" href="#" data-tip="Booking reference"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>BK-2026-000003</a>
+              <span class="meta-sep">·</span>
+              <span>from</span>
+              <a class="q-ref" href="#" data-tip="Source query"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>Q-1042</a>
             </div>
+          </div>
+          <div class="rec-right">
+            <div class="owner"><b>Vrushabh Jain</b><span>Owner · Team +2</span></div>
+            <div class="avstack" aria-label="People on this booking">
+              <div class="avatar pink" data-tip="Vrushabh Jain · Owner">VJ</div>
+              <div class="avatar" style="background:#FBF2E0;color:#B45309" data-tip="Neha Kapoor">NK</div>
+              <div class="avatar" style="background:#E9F6EE;color:#15803D" data-tip="Meera Iyer">MI</div>
+            </div>
+            <button class="btn btn-primary btn-sm" type="button" aria-label="Edit booking"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Edit</button>
           </div>
         </div>
 
         <div class="chrome">
         <div class="tabbar" id="tabbar" role="tablist" aria-label="Booking sections">
           <button class="tab active" data-tab="overview" data-label="Overview" role="tab" aria-selected="true">Overview</button>
-          <button class="tab" data-tab="services" data-label="Services &amp; Vendors" role="tab" aria-selected="false">Services &amp; Vendors<span class="chip" title="2 unconfirmed services">2</span></button>
-          <button class="tab" data-tab="fulfilment" data-label="Fulfilment &amp; Tasks" role="tab" aria-selected="false">Fulfilment &amp; Tasks<span class="chip" title="2 overdue booking tasks">2</span></button>
+          <button class="tab" data-tab="services" data-label="Vendors" role="tab" aria-selected="false">Vendors<span class="chip" title="2 unconfirmed services">2</span></button>
+          <button class="tab" data-tab="fulfilment" data-label="Tasks" role="tab" aria-selected="false">Tasks<span class="chip" title="2 overdue booking tasks">2</span></button>
           <button class="tab" data-tab="travellers" data-label="Travellers" role="tab" aria-selected="false">Travellers</button>
           <button class="tab" data-tab="documents" data-label="Documents" role="tab" aria-selected="false">Documents<span class="chip" title="1 missing passport">1</span></button>
           <button class="tab" data-tab="finance" data-label="Finance" role="tab" aria-selected="false">Finance<span class="chip" title="1 overdue customer payment">1</span></button>
@@ -851,13 +861,13 @@
             </div>
           </div>
 
-          <div class="section">
+          <div class="section section-grow">
             <div class="section-head">
             <h3>Itinerary</h3>
-            <button class="btn btn-ghost btn-sm">View full itinerary</button>
+            <button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>View full itinerary</button>
           </div>
 
-          <div class="sheet sheet-it">
+          <div class="sheet sheet-it sheet-grow">
             <div class="row-head">
               <div class="cell-check"><div class="cbx" data-select-all="it" role="checkbox" tabindex="0" data-tip="Select all days"><span class="dash" style="display:none"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <span>Day</span><span>Date</span><span>Destination / route</span><span>Services</span>
@@ -902,6 +912,11 @@
               <div class="ell muted-cell">Transfer</div>
             </div>
 
+            <div class="row row-fill" aria-hidden="true">
+              <div class="cell-check"></div>
+              <div></div><div></div><div></div><div></div>
+            </div>
+
             <div class="foot">
               <span class="range">Showing 1–5 of 5</span>
               <div class="pager">
@@ -921,23 +936,17 @@
 
           <div class="toolbar">
             <div class="search" style="flex:1 1 260px;max-width:none">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9298A2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
               <input type="text" placeholder="Search service or voucher file">
             </div>
-            <button class="btn btn-ghost btn-sm" style="height:36px" data-tip="Filter by kind"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filter</button>
+            <button class="btn btn-ghost btn-sm" style="height:36px" data-tip="Filter by state or kind"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filter</button>
             <button class="btn btn-primary" style="height:36px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>Upload voucher</button>
           </div>
 
-          <div class="sheet sheet-vo">
+          <div class="sheet sheet-vo sheet-grow">
             <div class="row-head">
               <div class="cell-check"><div class="cbx" data-select-all="vo" role="checkbox" tabindex="0" data-tip="Select all vouchers"><span class="dash" style="display:none"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <span>Service</span><span>Voucher</span><span>State</span><span>Details</span><span>Action</span>
-            </div>
-
-            <div class="grouphead gh-bad">
-              <span class="g-dot" style="background:var(--bad)"></span>
-              <span class="g-label">Needs action</span>
-              <span class="g-count">3</span>
             </div>
 
             <div class="row vo-row">
@@ -946,7 +955,7 @@
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-bad"><span class="d"></span>Blocked</span></div>
               <div class="ell muted-cell" data-tip="Confirm the service to prepare its voucher">Confirm the service to prepare its voucher</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Open service</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open service</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -955,7 +964,7 @@
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-warn"><span class="d"></span>Awaiting</span></div>
               <div class="ell muted-cell" data-tip="Upload the supplier voucher">Upload the supplier voucher</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Upload</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>Upload</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -964,13 +973,7 @@
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-bad"><span class="d"></span>Blocked</span></div>
               <div class="ell muted-cell" data-tip="Assign a vendor and confirm the service">Assign a vendor and confirm the service</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Open service</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
-            </div>
-
-            <div class="grouphead gh-ok">
-              <span class="g-dot" style="background:var(--ok)"></span>
-              <span class="g-label">Sent</span>
-              <span class="g-count">2</span>
+              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open service</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -979,7 +982,7 @@
               <div style="min-width:0"><a href="#" class="file-link ell" data-tip="desert-wheels-arrival-transfer.pdf" style="display:block">desert-wheels-arrival-transfer.pdf</a></div>
               <div><span class="tag t-ok"><span class="d"></span>Sent</span></div>
               <div class="ell muted-cell">v1 · sent 9 Aug · 18:05</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">View</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>View</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -988,7 +991,12 @@
               <div style="min-width:0"><a href="#" class="file-link ell" data-tip="city-tour-voucher-v1.pdf" style="display:block">city-tour-voucher-v1.pdf</a></div>
               <div><span class="tag t-ok"><span class="d"></span>Sent</span></div>
               <div class="ell muted-cell">v1 · sent 10 Aug · 14:50</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">View</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>View</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+            </div>
+
+            <div class="row row-fill" aria-hidden="true">
+              <div class="cell-check"></div>
+              <div></div><div></div><div></div><div></div><div></div>
             </div>
 
             <div class="bulk" data-bulk="vo">
@@ -996,7 +1004,7 @@
               <div style="display:flex;gap:7px">
                 <button class="btn btn-ghost btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Export</button>
                 <button class="btn btn-secondary btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Send vouchers</button>
-                <button class="btn btn-ghost btn-sm" data-clear="vo">Clear</button>
+                <button class="btn btn-ghost btn-sm" data-clear="vo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Clear</button>
               </div>
             </div>
 
@@ -1052,9 +1060,9 @@
         <div class="sticky-bulk" data-bulk="it" id="itBulk">
           <span class="lbl"><span data-count="it">0</span> itinerary days selected</span>
           <div style="display:flex;gap:7px">
-            <button class="btn btn-ghost btn-sm">Export</button>
-            <button class="btn btn-secondary btn-sm">Add to voucher</button>
-            <button class="btn btn-ghost btn-sm" data-clear="it">Clear</button>
+            <button class="btn btn-ghost btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Export</button>
+            <button class="btn btn-secondary btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a1 1 0 0 0 1 1h4M12 18v-6M9 15h6"/></svg>Add to voucher</button>
+            <button class="btn btn-ghost btn-sm" data-clear="it"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Clear</button>
           </div>
         </div>
 
@@ -1080,7 +1088,7 @@
     <div class="nd-view show" id="ndBrowse">
       <div class="nd-body">
         <div class="nd-search">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9298A2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
           <input type="text" id="ndFind" placeholder="Search notes">
         </div>
         <div class="nd-filters">
@@ -1116,8 +1124,8 @@
         </div>
       </div>
       <div class="nd-foot">
-        <button class="btn btn-ghost" id="ndCancel">Cancel</button>
-        <button class="btn btn-primary" id="ndSave">Save note</button>
+        <button class="btn btn-ghost" id="ndCancel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Cancel</button>
+        <button class="btn btn-primary" id="ndSave"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Save note</button>
       </div>
     </div>
   </aside>
@@ -1126,7 +1134,7 @@
 <script>
   var EMPTY_TABS = ['services','fulfilment','travellers','documents','finance','activity'];
   var TAB_TITLES = {
-    services:'Services & Vendors', fulfilment:'Fulfilment & Tasks', travellers:'Travellers',
+    services:'Vendors', fulfilment:'Tasks', travellers:'Travellers',
     documents:'Documents', finance:'Finance', activity:'Activity'
   };
   EMPTY_TABS.forEach(function(k){
@@ -1482,7 +1490,7 @@
       thBody.innerHTML = (MSGS[c.id]||[]).map(function(m){
         var att = m[3] ? '<div class="msg-att"><div class="att-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M15 2v5h5"/></svg>'+esc(m[3])+'</div>'+
           '<div class="att-file">'+esc(m[4])+'</div>'+
-          '<div class="att-acts"><button class="btn btn-secondary btn-xs">Save to Documents</button><button class="btn btn-ghost btn-xs">Preview</button></div></div>' : '';
+          '<div class="att-acts"><button class="btn btn-secondary btn-xs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a1 1 0 0 0 1 1h4"/></svg>Save to Documents</button><button class="btn btn-ghost btn-xs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview</button></div></div>' : '';
         return '<div class="msg '+(m[0]==='out'?'msg-out':'msg-in')+'"><div>'+esc(m[1])+'</div>'+att+'<div class="msg-meta">'+esc(m[2])+'</div></div>';
       }).join('');
       thBody.scrollTop = thBody.scrollHeight;
