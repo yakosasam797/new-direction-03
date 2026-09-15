@@ -9,24 +9,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ---- elevation: ground → inset shells → raised modules → recessed rails ---- */
-    --ground:#DDE1E8;
+    /* ---- soft clean ground (behind both panels) ---- */
+    --ground:#EBEDF1;
+    /* ---- the two shells: sidebar + workspace ---- */
     --panel:#FFFFFF;
-    --panel-ground:#EEF1F5;   /* workspace well, clearly below white modules */
-    --surface:#FFFFFF;
-    --surface-2:#E6EAF0;      /* recessed heads / column rails */
-    --surface-3:#F5F7FA;      /* hover */
+    --panel-ground:#FAFBFC;   /* workspace interior — light & clean */
+    --surface:#FFFFFF;        /* bento blocks */
+    --surface-2:#F1F4F7;      /* column headers / block heads (clean tint) */
+    --surface-3:#F6F8FA;      /* row hover */
     --ink:#181B20;
-    --ink-2:#4A515C;   /* AA on white for muted body */
-    --ink-3:#5B6270;   /* AA on white for 12px+ labels */
+    --ink-2:#565C66;   /* AA on white for body-muted text */
+    --ink-3:#6C727C;   /* AA on white for small labels & meta */
     --ink-4:#8A909A;   /* decorative only — icon strokes, dividers */
-    --line:#D5DAE2;
-    --line-2:#E6EAF0;
+    --line:#E4E7EC;
+    --line-2:#EEF0F3;
+    /* ---- identity accents ---- */
     --accent:#0F6E63;
     --accent-ink:#0B544B;
     --accent-soft:#E7F2F0;
-    --pink:#9A4A74;
-    --pink-ink:#7A3A5E;
+    --pink:#A5537E;
+    --pink-ink:#853F64;
     --pink-soft:#FBEEF4;
     --pink-line:#EFCFDF;
     --pink-avatar:#F8DEE8;
@@ -34,31 +36,24 @@
     --warn:#B45309;  --warn-bg:#FBF2E0;  --warn-line:#F0DCB4;
     --bad:#BE3B48;   --bad-bg:#FBEDEE;   --bad-line:#F1D2D6;
     --info:#3D4654;  --info-bg:#F1F4F7;  --info-line:#E4E7EC;
-    --gh-accent:#E4F0EE;
-    --gh-bad:#F8E8EA;
-    --gh-ok:#E5F3EA;
-    --shadow-shell:0 1px 1px rgba(23,43,77,.05), 0 12px 32px rgba(23,43,77,.09);
-    --shadow-block:0 1px 1px rgba(23,43,77,.04), 0 4px 16px rgba(23,43,77,.06);
-    --shadow-raised:0 1px 1px rgba(23,43,77,.05), 0 10px 24px rgba(23,43,77,.08);
-    --shadow-sticky:0 10px 24px -12px rgba(23,43,77,.22);
-    --blockShadow:var(--shadow-block);
-    --panelShadow:var(--shadow-shell);
+    /* status tints for group headers (personality + hierarchy) */
+    --gh-accent:#E9F3F1;
+    --gh-bad:#FBF0F1;
+    --gh-ok:#EDF6F0;
+    /* soft, light shadows — not dark */
+    --blockShadow:0 1px 2px rgba(23,43,77,.045);
+    --panelShadow:0 1px 3px rgba(23,43,77,.05);
     --focus:#0F6E63;
-    --focus-ring:rgba(15,110,99,.24);
-    --chrome-offset:0px;
   }
   *{box-sizing:border-box}
-  html{color-scheme:light;height:100%}
   html,body{margin:0;padding:0;height:100%;width:100%;max-width:100%;overflow-x:hidden}
   body{
     font-family:'Public Sans',system-ui,sans-serif;font-size:14px;line-height:1.5;
     color:var(--ink);background:var(--ground);-webkit-font-smoothing:antialiased;
-    touch-action:manipulation;
   }
   h1,h2,h3,h4{font-family:'Onest',system-ui,sans-serif;letter-spacing:-0.02em;margin:0}
   a{color:var(--accent-ink);text-decoration:none}
   a:hover{color:var(--accent)}
-  a:focus-visible{text-decoration:underline}
   .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
   ::selection{background:#F1D6E3}
   *{scrollbar-width:thin;scrollbar-color:transparent transparent}
@@ -94,14 +89,14 @@
   .collapsed .notes-main[data-tip]:hover::after{display:block;opacity:1;left:calc(100% + 12px);top:50%;transform:translateY(-50%)}
 
   /* ---------- sidebar = its own light shell ---------- */
-  .side{display:flex;flex-direction:column;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-shell);overflow:hidden}
-  .side-top{display:flex;align-items:center;gap:10px;padding:16px 16px 12px;border-bottom:1px solid transparent;background:linear-gradient(180deg, #fff 0%, #F8FAFB 100%)}
+  .side{display:flex;flex-direction:column;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--panelShadow);overflow:hidden}
+  .side-top{display:flex;align-items:center;gap:10px;padding:16px 16px 12px}
   .brand-mark{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;flex:none}
   .brand-name{font-family:'Onest',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.03em;color:var(--ink)}
   .brand-caret{margin-left:auto;color:var(--ink-3)}
 
-  .notes{margin:2px 12px 6px;display:flex;align-items:center;height:38px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 1px 2px rgba(23,43,77,.04)}
-  .notes-main{flex:1;display:flex;align-items:center;gap:9px;padding:0 8px 0 12px;height:100%;color:var(--ink);font-size:13px;font-weight:600;cursor:pointer;border:none;background:transparent;font-family:inherit;text-align:left;min-width:0}
+  .notes{margin:2px 12px 6px;display:flex;align-items:center;height:38px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .notes-main{flex:1;display:flex;align-items:center;gap:9px;padding:0 8px 0 12px;height:100%;color:var(--ink);font-size:13px;font-weight:600;cursor:pointer}
   .notes-main svg{color:var(--ink-3)}
   .notes-main:hover{background:var(--surface-3)}
   .notes-badge{margin-left:auto;display:inline-grid;place-items:center;min-width:20px;height:18px;padding:0 6px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
@@ -110,11 +105,11 @@
 
   .side-scroll{flex:1;min-height:0;overflow-y:auto;padding:6px 10px 12px}
   .side-group{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:0 10px;margin:16px 0 6px}
-  .nav-item{display:flex;align-items:center;gap:11px;width:100%;height:35px;padding:0 11px;border:none;border-radius:8px;background:transparent;color:var(--ink-2);font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;text-align:left}
+  .nav-item{display:flex;align-items:center;gap:11px;height:35px;padding:0 11px;border-radius:8px;color:var(--ink-2);font-size:13.5px;font-weight:500;cursor:pointer}
   .nav-item svg{flex:none;color:var(--ink-3)}
   .nav-item:hover{background:var(--surface-3);color:var(--ink)}
   .nav-item:hover svg{color:var(--ink-2)}
-  .nav-item.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:600;box-shadow:inset 3px 0 0 var(--accent)}
+  .nav-item.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
   .nav-item.active svg{color:var(--accent)}
   .side-foot{padding:12px;border-top:1px solid var(--line)}
   .side-collapse{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 11px;margin-top:12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
@@ -138,22 +133,22 @@
     border:1px solid var(--line);
     overflow:hidden;
     display:flex;flex-direction:column;min-width:0;min-height:0;
-    box-shadow:var(--shadow-shell);
+    box-shadow:var(--panelShadow);
     container-type:inline-size;
     container-name:shell;
   }
-  .topbar{display:flex;align-items:center;gap:8px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--surface);flex:none;min-width:0;z-index:40;box-shadow:0 1px 0 rgba(255,255,255,.9), 0 6px 16px -12px rgba(23,43,77,.18)}
-  .search{flex:1 1 180px;min-width:0;max-width:460px;display:flex;align-items:center;gap:9px;height:40px;padding:0 6px 0 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-3);box-shadow:inset 0 1px 2px rgba(23,43,77,.04)}
-  .search:focus-within{border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px var(--focus-ring), inset 0 1px 0 rgba(255,255,255,.8)}
+  .topbar{display:flex;align-items:center;gap:8px;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--surface);flex:none;min-width:0}
+  .search{flex:1 1 180px;min-width:0;max-width:460px;display:flex;align-items:center;gap:9px;height:40px;padding:0 6px 0 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-3)}
+  .search:focus-within{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
   .search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:inherit;font-size:13.5px;color:var(--ink)}
   .search input::placeholder{color:var(--ink-3)}
   .search-scope{display:flex;align-items:center;gap:5px;height:28px;padding:0 9px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
   .search-scope:hover{background:var(--surface-3);color:var(--ink)}
   .search-scope svg{color:var(--ink-3)}
   .spacer{flex:1}
-  .icon-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;position:relative;box-shadow:0 1px 1px rgba(23,43,77,.04)}
-  .icon-btn:hover{background:var(--surface-3);color:var(--ink);border-color:#C9CED6}
-  .acct{display:flex;align-items:center;gap:8px;height:40px;padding:0 11px 0 8px;border:1px solid var(--pink-line);border-radius:10px;background:var(--surface);color:var(--pink);font-family:'Onest',sans-serif;font-size:13px;font-weight:600;cursor:pointer;flex:none;box-shadow:0 1px 1px rgba(154,74,116,.08)}
+  .icon-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;position:relative}
+  .icon-btn:hover{background:var(--surface-3);color:var(--ink)}
+  .acct{display:flex;align-items:center;gap:8px;height:40px;padding:0 11px 0 8px;border:1px solid var(--pink-line);border-radius:10px;background:var(--surface);color:var(--pink);font-family:'Onest',sans-serif;font-size:13px;font-weight:600;cursor:pointer;flex:none}
   .acct:hover{background:var(--pink-soft)}
   .acct .avatar{width:26px;height:26px}
   .acct svg{color:var(--pink)}
@@ -161,7 +156,7 @@
   .avatar.pink{background:var(--pink-avatar);color:var(--pink);border:1px solid var(--pink-line)}
   .dot-alert{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:999px;background:var(--bad);border:1.5px solid var(--surface)}
 
-  .scroll{flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;background:var(--panel-ground);scroll-padding-top:72px;overscroll-behavior:contain}
+  .scroll{flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;background:var(--panel-ground)}
   .content{
     --page-pad:clamp(16px, 2.2cqi, 52px);
     /* checkbox track includes the page inset plus room after the box, before the Day rule */
@@ -172,6 +167,7 @@
     max-width:2000px;
     min-width:0;
     margin:0 auto;
+    overflow-x:hidden;
     padding:clamp(16px, 1.5cqi, 32px) var(--page-pad) clamp(36px, 3cqi, 64px);
   }
 
@@ -184,13 +180,12 @@
   .block-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;border-bottom:1px solid var(--line);background:var(--surface-2)}
   .block-head h3{font-size:14.5px;font-weight:700;color:var(--ink)}
 
-  /* record header — raised identity card with semantic status rail */
-  .record{position:relative;border:1px solid var(--line);border-radius:14px;padding:19px 22px 19px 24px;box-shadow:var(--shadow-raised);margin-bottom:18px;overflow:visible;min-width:0;
+  /* record header (bento) — distinctive hero surface */
+  .record{position:relative;border:1px solid var(--line);border-radius:14px;padding:19px 22px;box-shadow:var(--blockShadow);margin-bottom:18px;overflow:visible;min-width:0;
     background:
-      linear-gradient(100deg, rgba(15,110,99,.09) 0%, rgba(15,110,99,.03) 42%, rgba(15,110,99,0) 78%),
+      linear-gradient(100deg, rgba(15,110,99,.075) 0%, rgba(15,110,99,.035) 38%, rgba(15,110,99,0) 82%),
       var(--surface);
   }
-  .record::before{content:"";position:absolute;inset:8px auto 8px 0;width:3px;border-radius:0 3px 3px 0;background:var(--accent)}
   .rec-top{display:flex;align-items:center;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;margin-bottom:12px;min-width:0;width:100%}
   .rec-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:var(--ink-2);min-width:0;flex:1 1 12rem}
   .meta-sep{color:var(--ink-3)}
@@ -217,7 +212,7 @@
   /* ===== button system =====
      base .btn + one variant (.btn-primary/-secondary/-ghost/-subtle/-danger)
      + optional size (.btn-lg/-sm/-xs) + optional .btn-icon (square, icon-only) */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:10px;font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .12s ease,border-color .12s ease,color .12s ease,box-shadow .12s ease,transform .12s ease}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:10px;font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .12s ease,border-color .12s ease,color .12s ease}
   .btn svg{flex:none}
   .btn:disabled{opacity:.5;cursor:not-allowed}
   /* sizes */
@@ -230,31 +225,23 @@
   .btn-icon.btn-sm{width:32px}
   .btn-icon.btn-xs{width:27px}
   /* variants */
-  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 1px 2px rgba(11,84,75,.28)}
+  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
   .btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
-  .btn-primary:active{transform:translateY(1px);box-shadow:none}
-  .btn-secondary{background:var(--pink);color:#fff;border-color:var(--pink);box-shadow:0 1px 0 rgba(255,255,255,.16) inset, 0 1px 2px rgba(122,58,94,.25)}
+  .btn-secondary{background:var(--pink);color:#fff;border-color:var(--pink)}
   .btn-secondary:hover{background:var(--pink-ink);border-color:var(--pink-ink)}
-  .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line);box-shadow:0 1px 1px rgba(23,43,77,.04)}
-  .btn-ghost:hover{background:var(--surface-3);border-color:#C9CED6}
+  .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{background:var(--surface-3);border-color:#D7DBE1}
   .btn-subtle{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
   .btn-subtle:hover{background:#DBEBE8}
   .btn-danger{background:var(--surface);color:var(--bad);border-color:var(--bad-line)}
   .btn-danger:hover{background:var(--bad-bg)}
 
   /* full tab bar — underline style; More appears only when tabs overflow */
-  .chrome{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--panel-ground) 88%, transparent);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);padding-top:2px;margin:0 calc(var(--page-pad) * -1);padding-left:var(--page-pad);padding-right:var(--page-pad);min-width:0;transition:box-shadow .18s ease, background .18s ease}
-  .chrome.is-stuck{background:rgba(255,255,255,.92);box-shadow:var(--shadow-sticky);border-bottom:1px solid var(--line)}
-  .ctx{display:flex;align-items:center;gap:10px;min-width:0;max-height:0;opacity:0;overflow:hidden;pointer-events:none;margin:0;transition:max-height .2s ease, opacity .16s ease, padding .2s ease}
-  .chrome.is-stuck .ctx{max-height:44px;opacity:1;pointer-events:auto;padding:8px 0 2px}
-  .ctx-title{font-family:'Onest',sans-serif;font-size:14px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-  .ctx-id{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--accent-ink);background:var(--accent-soft);border:1px solid #C4D9D5;border-radius:6px;padding:2px 8px;flex:none}
-  .ctx .tag{height:22px;padding:0 8px;font-size:11.5px}
-  .tabbar{display:flex;align-items:stretch;gap:2px;margin:12px 0 0;border-bottom:1px solid var(--line);min-width:0;width:100%;max-width:100%}
-  .chrome.is-stuck .tabbar{margin-top:4px}
+  .chrome{position:sticky;top:0;z-index:30;background:var(--panel-ground);padding-top:4px;margin:0 calc(var(--page-pad) * -1);padding-left:var(--page-pad);padding-right:var(--page-pad);min-width:0}
+  .tabbar{display:flex;align-items:stretch;gap:2px;margin:16px 0 0;border-bottom:1px solid var(--line);min-width:0;width:100%;max-width:100%}
   .tab{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--ink-2);font-family:'Onest',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;white-space:nowrap;margin-bottom:-1px;flex:none}
   .tab:hover{color:var(--ink)}
-  .tab.active{color:var(--accent-ink);font-weight:600;border-bottom-color:var(--accent)}
+  .tab.active{color:var(--accent);font-weight:600;border-bottom-color:var(--accent)}
   .tab .chip{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:6px;background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line);font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600}
   .tab-more{position:relative;margin-left:auto;flex:none;display:none;background:var(--panel-ground);padding-left:4px;z-index:2}
   .tab-more-menu{display:none;position:absolute;right:0;top:calc(100% + 4px);min-width:220px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(20,26,33,.16);padding:6px;z-index:40}
@@ -273,13 +260,11 @@
     margin:0 calc(var(--page-pad) * -1);
     border-top:1px solid var(--line);
   }
-  .section-head + .summary{border-top:none}
   .sfield{
     min-width:0;
     padding:14px var(--page-pad);
     border-bottom:1px solid var(--line);
     border-left:none;
-    background:var(--surface);
   }
   .sf-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
   .sf-value{display:flex;align-items:center;gap:8px;margin-top:9px;font-family:'Onest',sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);min-width:0}
@@ -320,10 +305,8 @@
     border-top:1px solid var(--line);
     border-bottom-color:var(--line);
   }
-  .sheet-it .row::after,
-  .sheet-vo .row::after{background:var(--surface)}
   .sheet-it .row:hover::after,
-  .sheet-vo .row:hover::after{background:var(--surface-3)}
+  .sheet-vo .row:hover::after{background:var(--surface)}
   .sheet .row-head > *,
   .sheet .row > *{
     display:flex;
@@ -345,14 +328,9 @@
     border-top:1px solid var(--line);
     border-bottom-color:var(--line);
   }
-  .sheet .row > *{min-height:52px;background:var(--surface)}
-  .sheet .row:hover > *{background:var(--surface-3)}
+  .sheet .row > *{min-height:52px}
+  .sheet .row:hover > *{background:var(--surface)}
   .sheet .row:hover .reveal{opacity:1}
-  .sheet .row.row-bad > .cell-check{box-shadow:inset 3px 0 0 var(--bad)}
-  .sheet .row.row-warn > .cell-check{box-shadow:inset 3px 0 0 var(--warn)}
-  .sheet .row.row-ok > .cell-check{box-shadow:inset 3px 0 0 var(--ok)}
-  .sheet .row.is-travel .day-cell{color:var(--accent-ink)}
-  .sheet .row.is-leisure .primary-cell,.sheet .row.is-leisure .day-cell{color:var(--ink-2);font-weight:500}
   .row-head span{font-size:12px;letter-spacing:.01em;text-transform:none;color:var(--ink-2);font-weight:600}
   .cell-check{justify-content:flex-start}
   .sheet .row-head > .cell-check:first-child,
@@ -364,10 +342,10 @@
   .sheet-it .row-head > :nth-child(2),
   .sheet-it .row > .day-cell{padding-left:16px}
   /* group header: status-tinted band for hierarchy + personality */
-  .grouphead{display:flex;align-items:center;gap:9px;padding:9px var(--page-pad);border-bottom:1px solid var(--line);min-width:0}
-  .grouphead.gh-accent{background:var(--gh-accent);box-shadow:inset 3px 0 0 var(--accent)}
-  .grouphead.gh-bad{background:var(--gh-bad);box-shadow:inset 3px 0 0 var(--bad)}
-  .grouphead.gh-ok{background:var(--gh-ok);box-shadow:inset 3px 0 0 var(--ok)}
+  .grouphead{display:flex;align-items:center;gap:9px;padding:9px var(--page-pad);border-bottom:1px solid var(--line-2);min-width:0}
+  .grouphead.gh-accent{background:var(--gh-accent)}
+  .grouphead.gh-bad{background:var(--gh-bad)}
+  .grouphead.gh-ok{background:var(--gh-ok)}
   .grouphead .g-dot{width:8px;height:8px;border-radius:999px}
   .grouphead .g-label{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:-0.01em}
   .grouphead .g-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2)}
@@ -383,7 +361,7 @@
   .cell-lead{display:flex;align-items:center;gap:9px;min-width:0}
   .cell-lead>svg{color:var(--ink-3);flex:none}
 
-  .cbx{width:18px;height:18px;border:1.6px solid #B8BDC6;border-radius:5px;background:var(--surface);display:grid;place-items:center;cursor:pointer;color:#fff;flex:none;box-shadow:inset 0 1px 1px rgba(23,43,77,.06)}
+  .cbx{width:18px;height:18px;border:1.6px solid #C6CAD1;border-radius:5px;background:var(--surface);display:grid;place-items:center;cursor:pointer;color:#fff;flex:none}
   .cbx svg{opacity:0;transition:opacity .1s ease}
   .cbx.on{background:var(--accent);border-color:var(--accent)}
   .cbx.on svg{opacity:1}
@@ -398,7 +376,7 @@
 
   .bulk{display:none;align-items:center;justify-content:space-between;gap:12px;padding:11px var(--page-pad);border-bottom:1px solid var(--line);background:var(--accent-soft);min-width:0}
   .bulk.show{display:flex}
-  .sticky-bulk{display:none;position:sticky;bottom:0;z-index:25;align-items:center;justify-content:space-between;gap:12px;margin:12px calc(var(--page-pad) * -1) 0;padding:12px var(--page-pad);border-top:1px solid var(--line);background:color-mix(in srgb, var(--surface) 92%, transparent);backdrop-filter:blur(12px);box-shadow:0 -10px 28px -12px rgba(23,43,77,.2)}
+  .sticky-bulk{display:none;position:sticky;bottom:0;z-index:25;align-items:center;justify-content:space-between;gap:12px;margin:12px calc(var(--page-pad) * -1) 0;padding:12px var(--page-pad);border-top:1px solid var(--line);background:var(--surface);box-shadow:0 -8px 24px rgba(23,43,77,.08)}
   .sticky-bulk.show{display:flex}
   .bulk .lbl{font-size:12.5px;font-weight:600;color:var(--accent-ink)}
   .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px var(--page-pad);min-width:0}
@@ -461,7 +439,7 @@
   .att-acts{display:flex;gap:7px;margin-top:10px}
   .composer{padding:14px 22px 16px;border-top:1px solid var(--line);background:var(--surface)}
   .composer textarea{width:100%;min-height:60px;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-family:inherit;font-size:14px;color:var(--ink);resize:vertical;outline:none;background:var(--surface-3)}
-  .composer textarea:focus{border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px var(--focus-ring)}
+  .composer textarea:focus{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
   .composer textarea::placeholder{color:var(--ink-3)}
   .composer-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
   @media(max-width:820px){ .comm{grid-template-columns:1fr} .comm-list{border-right:none;border-bottom:1px solid var(--line)} .comm-scroll{max-height:260px} }
@@ -469,7 +447,7 @@
   /* ===== notes popover (anchored to its trigger) ===== */
   .nd-overlay{position:fixed;inset:0;background:transparent;opacity:0;visibility:hidden;transition:opacity .16s ease,visibility .16s ease;z-index:500}
   .nd-overlay.open{opacity:1;visibility:visible}
-  .nd{position:fixed;width:min(388px,calc(100vw - 24px));max-height:min(600px,calc(100vh - 24px));display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:15px;box-shadow:0 20px 54px rgba(20,26,33,.22),0 2px 8px rgba(20,26,33,.08);transform:scale(.95);opacity:0;transform-origin:top left;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .16s ease;overflow:hidden;overscroll-behavior:contain}
+  .nd{position:fixed;width:min(388px,calc(100vw - 24px));max-height:min(600px,calc(100vh - 24px));display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:15px;box-shadow:0 20px 54px rgba(20,26,33,.22),0 2px 8px rgba(20,26,33,.08);transform:scale(.95);opacity:0;transform-origin:top left;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .16s ease;overflow:hidden}
   .nd-overlay.open .nd{transform:scale(1);opacity:1}
   .nd-head{padding:15px 16px 13px;border-bottom:1px solid var(--line);flex:none}
   .nd-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.02em;color:var(--accent-ink);margin-bottom:7px}
@@ -485,7 +463,7 @@
 
   /* compose */
   .nd-ta{width:100%;min-height:130px;resize:vertical;border:1px solid var(--line);border-radius:11px;background:var(--surface-3);padding:13px 14px;font-family:inherit;font-size:14px;color:var(--ink);outline:none}
-  .nd-ta:focus{border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px var(--focus-ring)}
+  .nd-ta:focus{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
   .nd-ta::placeholder{color:var(--ink-3)}
   .nd-field{margin-top:16px}
   .nd-flabel{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:8px}
@@ -531,60 +509,13 @@
     white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s ease,transform .12s ease;z-index:400;box-shadow:0 6px 18px rgba(20,26,33,.22)
   }
   [data-tip]:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
+  button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,.cbx:focus-visible,.nav-item:focus-visible,.tab:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
   .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  .sr:focus,.sr:focus-visible{
-    position:fixed;left:16px;top:16px;width:auto;height:auto;margin:0;clip:auto;overflow:visible;
-    padding:10px 14px;background:var(--ink);color:#fff;border-radius:8px;z-index:2000;
-    font-size:13.5px;font-weight:600;text-decoration:none;outline:2px solid #fff;outline-offset:2px;
-  }
-
-  button:focus-visible,
-  a:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible,
-  .cbx:focus-visible,
-  .nav-item:focus-visible,
-  .tab:focus-visible,
-  .icon-btn:focus-visible,
-  .acct:focus-visible,
-  .search-scope:focus-visible,
-  .more-btn:focus-visible,
-  .pg:focus-visible,
-  .notes-main:focus-visible,
-  .notes-add:focus-visible,
-  .convo:focus-visible,
-  .nd-mode:focus-visible,
-  .nd-close:focus-visible,
-  .nd-fil:focus-visible,
-  .nd-select-btn:focus-visible,
-  .nd-opt:focus-visible,
-  .nd-pin:focus-visible,
-  .nd-act:focus-visible,
-  [role="checkbox"]:focus-visible{
-    outline:2px solid var(--focus);
-    outline-offset:2px;
-    box-shadow:0 0 0 4px var(--focus-ring);
-  }
-  .btn-primary:focus-visible{
-    outline:2px solid #fff;
-    outline-offset:2px;
-    box-shadow:0 0 0 4px var(--accent);
-  }
-  .btn-secondary:focus-visible{
-    outline:2px solid #fff;
-    outline-offset:2px;
-    box-shadow:0 0 0 4px var(--pink);
-  }
-  .search:focus-within .search-scope:focus-visible{outline-offset:0}
-
-  .section{margin-bottom:32px;scroll-margin-top:72px}
-  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap;padding-bottom:8px;border-bottom:1px solid var(--line)}
-  .section-head h3,.section > h3{font-size:15.5px;font-weight:700;margin:0;letter-spacing:-0.02em;color:var(--ink)}
-
+  .section{margin-bottom:28px}
+  .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+  .section-head h3,.section > h3{font-size:15px;font-weight:700;margin:0}
   @media(prefers-reduced-motion:reduce){
-    .frame,.side-collapse svg,.nd,.nd-overlay,.btn,.ctx,.chrome,.reveal,.nd-note-acts{transition:none}
-    .btn-primary:active{transform:none}
+    .frame,.side-collapse svg,.nd,.nd-overlay{transition:none}
   }
 
   /* ----- viewport: chrome around the inset shells ----- */
@@ -741,11 +672,11 @@
 </style>
 </head>
 <body>
-<a class="sr" href="#workspace">Skip to booking</a>
+<a class="sr" href="#panel-overview">Skip to booking overview</a>
 <div class="frame">
 
-  <!-- ===================== SIDEBAR ===================== -->
-  <aside class="side" aria-label="Paryatech workspace">
+  <!-- ===================== SIDEBAR (dark shell) ===================== -->
+  <aside class="side">
     <div class="side-top">
       <span class="brand-mark">
         <svg width="17" height="17" viewBox="0 0 32 32" fill="none"><path d="M4 8.5C4 6.6 5.6 5 7.5 5h13.8c4.2 0 7.6 3.4 7.6 7.6 0 4.2-3.4 7.6-7.6 7.6h-6.1l-8 6.4c-1.4 1.1-3.2.1-3.2-1.6V8.5Z" fill="#fff"/><path d="M11 12.4h9.4" stroke="#0F6E63" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -755,38 +686,38 @@
     </div>
 
     <div class="notes">
-      <button type="button" class="notes-main" data-tip="Notes" aria-haspopup="dialog" aria-controls="ndOverlay">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M15 2v5h5"/></svg>
+      <div class="notes-main" data-tip="Notes">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M15 2v5h5"/></svg>
         <span class="notes-txt">Booking notes</span>
         <span class="notes-badge" title="2 pinned notes that need a follow-up">2</span>
-      </button>
-      <button type="button" class="notes-add" data-tip="Write a note" aria-label="Write a note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+      </div>
+      <button class="notes-add" data-tip="Write a note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
       </button>
     </div>
 
-    <nav class="side-scroll" id="sideNav" aria-label="Modules">
+    <div class="side-scroll" id="sideNav">
       <div class="side-group">Workspace</div>
-      <button type="button" class="nav-item" data-tip="Home"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="nav-label">Home</span></button>
-      <button type="button" class="nav-item" data-tip="All inbox"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 6.5 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-5.5A2 2 0 0 0 16.8 5H7.2a2 2 0 0 0-1.7 1.5z"/></svg><span class="nav-label">All inbox</span></button>
-      <button type="button" class="nav-item" data-tip="News"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v16a2 2 0 0 1-2 2 2 2 0 0 1-2-2V9h4"/><path d="M8 7h8M8 11h8M8 15h5"/></svg><span class="nav-label">News</span></button>
-      <button type="button" class="nav-item" data-tip="All tasks"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg><span class="nav-label">All tasks</span></button>
+      <div class="nav-item" data-tip="Home"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="nav-label">Home</span></div>
+      <div class="nav-item" tabindex="0" data-tip="All inbox"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 6.5 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-5.5A2 2 0 0 0 16.8 5H7.2a2 2 0 0 0-1.7 1.5z"/></svg><span class="nav-label">All inbox</span></div>
+      <div class="nav-item" data-tip="News"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v16a2 2 0 0 1-2 2 2 2 0 0 1-2-2V9h4"/><path d="M8 7h8M8 11h8M8 15h5"/></svg><span class="nav-label">News</span></div>
+      <div class="nav-item" tabindex="0" data-tip="All tasks"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg><span class="nav-label">All tasks</span></div>
 
       <div class="side-group">Sales</div>
-      <button type="button" class="nav-item" data-tip="Queries"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H8.6A1.6 1.6 0 0 0 7 3.6v16.8A1.6 1.6 0 0 0 8.6 22h10.8a1.6 1.6 0 0 0 1.6-1.6V7.5Z"/><path d="M14 2v6h6"/></svg><span class="nav-label">Queries</span></button>
-      <button type="button" class="nav-item" data-tip="Packages"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg><span class="nav-label">Packages</span></button>
-      <button type="button" class="nav-item active" data-tip="Bookings" aria-current="page"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-label">Bookings</span></button>
+      <div class="nav-item" data-tip="Queries"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H8.6A1.6 1.6 0 0 0 7 3.6v16.8A1.6 1.6 0 0 0 8.6 22h10.8a1.6 1.6 0 0 0 1.6-1.6V7.5Z"/><path d="M14 2v6h6"/></svg><span class="nav-label">Queries</span></div>
+      <div class="nav-item" data-tip="Packages"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg><span class="nav-label">Packages</span></div>
+      <div class="nav-item active" tabindex="0" data-tip="Bookings" aria-current="page"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-label">Bookings</span></div>
 
       <div class="side-group">CRM</div>
-      <button type="button" class="nav-item" data-tip="Customers"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6.2 19a6 6 0 0 1 11.6 0"/></svg><span class="nav-label">Customers</span></button>
-      <button type="button" class="nav-item" data-tip="Vendors"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M4 9.5V20h16V9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg><span class="nav-label">Vendors</span></button>
+      <div class="nav-item" data-tip="Customers"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6.2 19a6 6 0 0 1 11.6 0"/></svg><span class="nav-label">Customers</span></div>
+      <div class="nav-item" data-tip="Vendors"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M4 9.5V20h16V9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg><span class="nav-label">Vendors</span></div>
 
       <div class="side-group">Operations</div>
-      <button type="button" class="nav-item" data-tip="All finances"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg><span class="nav-label">All finances</span></button>
-      <button type="button" class="nav-item" data-tip="Team"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg><span class="nav-label">Team</span></button>
-      <button type="button" class="nav-item" data-tip="Automations"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg><span class="nav-label">Automations</span></button>
-      <button type="button" class="nav-item" data-tip="Reports"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg><span class="nav-label">Reports</span></button>
-    </nav>
+      <div class="nav-item" tabindex="0" data-tip="All finances"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg><span class="nav-label">All finances</span></div>
+      <div class="nav-item" data-tip="Team"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg><span class="nav-label">Team</span></div>
+      <div class="nav-item" data-tip="Automations"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg><span class="nav-label">Automations</span></div>
+      <div class="nav-item" data-tip="Reports"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg><span class="nav-label">Reports</span></div>
+    </div>
 
     <div class="side-foot">
       <div class="credit" data-tip="720 of 1,000 credits remaining this cycle">
@@ -805,12 +736,12 @@
   </aside>
 
   <!-- ===================== INSET WORKSPACE PANEL ===================== -->
-  <main class="workspace" id="workspace">
+  <main class="workspace">
 
-    <header class="topbar">
+    <div class="topbar">
       <div class="search">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C727C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="search" name="workspace-search" placeholder="Search anything…" aria-label="Search the workspace" autocomplete="off" spellcheck="false">
+        <input type="search" placeholder="Search anything" aria-label="Search the workspace">
         <button class="search-scope" data-tip="Change search scope" aria-label="Search scope: Query">Query<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
       <div class="spacer"></div>
@@ -819,32 +750,32 @@
       <button class="icon-btn" data-tip="Call logs" aria-label="Call logs"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></button>
       <button class="icon-btn" data-tip="3 unread notifications" aria-label="Notifications, 3 unread"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dot-alert"></span></button>
       <button class="acct" data-tip="Vrushabh Jain · Account" aria-label="Account, Vrushabh Jain"><span class="avatar pink">VJ</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-    </header>
+    </div>
 
     <div class="scroll">
       <div class="content">
 
-        <nav class="crumbs" aria-label="Breadcrumb">
+        <div class="crumbs">
           <a href="#">Operations</a>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           <a href="#">Bookings</a>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-          <span class="here" aria-current="page">XYZ Family · Dubai</span>
-        </nav>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          <span class="here">XYZ Family · Dubai</span>
+        </div>
 
-        <header class="record" aria-labelledby="booking-title">
+        <div class="record">
           <div class="rec-top">
             <div class="rec-meta">
               <span>Booked 11 Aug</span><span class="meta-sep">·</span>
-              <span class="meta-id" data-tip="Booking reference" translate="no"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>BK-2026-000003</span>
+              <span class="meta-id" data-tip="Booking reference"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>BK-2026-000003</span>
               <span class="meta-sep">·</span><span>from</span>
-              <span class="meta-id" data-tip="Source query" translate="no"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>Q-1042</span>
+              <span class="meta-id" data-tip="Source query"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>Q-1042</span>
             </div>
             <div class="edited">Last edited 11 August 2026 by Vrushabh Jain.</div>
           </div>
           <div class="rec-head">
             <div style="min-width:0">
-              <h1 class="rec-title" id="booking-title" title="XYZ Family · Dubai">XYZ Family · Dubai</h1>
+              <h1 class="rec-title" title="XYZ Family · Dubai">XYZ Family · Dubai</h1>
               <div class="tags">
                 <span class="tag t-ok"><span class="d"></span>Confirmed</span>
                 <span class="tag t-info" title="Departs 18 Aug 2026"><span class="d"></span>Upcoming</span>
@@ -860,31 +791,25 @@
                 <div class="avatar" style="background:#FBF2E0;color:#B45309" data-tip="Neha Kapoor">NK</div>
                 <div class="avatar" style="background:#E9F6EE;color:#15803D" data-tip="Meera Iyer">MI</div>
               </div>
-              <button class="btn btn-primary" type="button">Edit booking</button>
+              <button class="btn btn-primary" type="button" aria-label="Edit booking">Edit booking</button>
             </div>
           </div>
-        </header>
-
-        <div class="chrome" id="chrome">
-        <div class="ctx" id="ctxBar" aria-hidden="true">
-          <span class="ctx-title">XYZ Family · Dubai</span>
-          <span class="tag t-ok"><span class="d"></span>Confirmed</span>
-          <span class="tag t-info"><span class="d"></span>Upcoming</span>
-          <span class="ctx-id" translate="no">BK-2026-000003</span>
         </div>
+
+        <div class="chrome">
         <div class="tabbar" id="tabbar" role="tablist" aria-label="Booking sections">
-          <button class="tab active" id="tab-overview" data-tab="overview" data-label="Overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
-          <button class="tab" id="tab-services" data-tab="services" data-label="Services &amp; Vendors" role="tab" aria-selected="false" aria-controls="panel-services">Services &amp; Vendors<span class="chip" title="2 unconfirmed services">2</span></button>
-          <button class="tab" id="tab-fulfilment" data-tab="fulfilment" data-label="Fulfilment &amp; Tasks" role="tab" aria-selected="false" aria-controls="panel-fulfilment">Fulfilment &amp; Tasks<span class="chip" title="2 overdue booking tasks">2</span></button>
-          <button class="tab" id="tab-travellers" data-tab="travellers" data-label="Travellers" role="tab" aria-selected="false" aria-controls="panel-travellers">Travellers</button>
-          <button class="tab" id="tab-documents" data-tab="documents" data-label="Documents" role="tab" aria-selected="false" aria-controls="panel-documents">Documents<span class="chip" title="1 missing passport">1</span></button>
-          <button class="tab" id="tab-finance" data-tab="finance" data-label="Finance" role="tab" aria-selected="false" aria-controls="panel-finance">Finance<span class="chip" title="1 overdue customer payment">1</span></button>
-          <button class="tab" id="tab-vouchers" data-tab="vouchers" data-label="Vouchers" role="tab" aria-selected="false" aria-controls="panel-vouchers">Vouchers<span class="chip" title="3 vouchers blocked or awaiting upload">3</span></button>
-          <button class="tab" id="tab-communication" data-tab="communication" data-label="Communication" role="tab" aria-selected="false" aria-controls="panel-communication">Communication<span class="chip" title="2 unread messages">2</span></button>
-          <button class="tab" id="tab-activity" data-tab="activity" data-label="Activity" role="tab" aria-selected="false" aria-controls="panel-activity">Activity</button>
+          <button class="tab active" data-tab="overview" data-label="Overview" role="tab" aria-selected="true">Overview</button>
+          <button class="tab" data-tab="services" data-label="Services &amp; Vendors" role="tab" aria-selected="false">Services &amp; Vendors<span class="chip" title="2 unconfirmed services">2</span></button>
+          <button class="tab" data-tab="fulfilment" data-label="Fulfilment &amp; Tasks" role="tab" aria-selected="false">Fulfilment &amp; Tasks<span class="chip" title="2 overdue booking tasks">2</span></button>
+          <button class="tab" data-tab="travellers" data-label="Travellers" role="tab" aria-selected="false">Travellers</button>
+          <button class="tab" data-tab="documents" data-label="Documents" role="tab" aria-selected="false">Documents<span class="chip" title="1 missing passport">1</span></button>
+          <button class="tab" data-tab="finance" data-label="Finance" role="tab" aria-selected="false">Finance<span class="chip" title="1 overdue customer payment">1</span></button>
+          <button class="tab" data-tab="vouchers" data-label="Vouchers" role="tab" aria-selected="false">Vouchers<span class="chip" title="3 vouchers blocked or awaiting upload">3</span></button>
+          <button class="tab" data-tab="communication" data-label="Communication" role="tab" aria-selected="false">Communication<span class="chip" title="2 unread messages">2</span></button>
+          <button class="tab" data-tab="activity" data-label="Activity" role="tab" aria-selected="false">Activity</button>
           <div class="tab-more" id="tabMoreWrap">
-            <button class="tab" id="tabMoreBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="tabMoreMenu">More</button>
-            <div class="tab-more-menu" id="tabMoreMenu" role="menu" aria-label="More booking sections"></div>
+            <button class="tab" id="tabMoreBtn" type="button" aria-haspopup="true" aria-expanded="false">More</button>
+            <div class="tab-more-menu" id="tabMoreMenu"></div>
           </div>
         </div>
         </div>
@@ -892,7 +817,7 @@
         <div class="panels">
 
         <!-- ============ OVERVIEW ============ -->
-        <div class="panel show" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+        <div class="panel show" id="panel-overview" role="tabpanel">
 
           <div class="section" id="trip-summary">
             <div class="section-head"><h3>Trip summary</h3></div>
@@ -924,19 +849,19 @@
             </div>
           </div>
 
-          <div class="section" id="itinerary">
+          <div class="section">
             <div class="section-head">
-              <h3>Itinerary</h3>
-              <button class="btn btn-ghost btn-sm">View full itinerary</button>
-            </div>
+            <h3>Itinerary</h3>
+            <button class="btn btn-ghost btn-sm">View full itinerary</button>
+          </div>
 
           <div class="sheet sheet-it">
             <div class="row-head">
-              <div class="cell-check"><div class="cbx" data-select-all="it" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select all days" data-tip="Select all days"><span class="dash" style="display:none"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-check"><div class="cbx" data-select-all="it" role="checkbox" tabindex="0" data-tip="Select all days"><span class="dash" style="display:none"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <span>Day</span><span>Date</span><span>Destination / route</span><span>Services</span>
             </div>
-            <div class="row it-row is-travel">
-              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select Day 1"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+            <div class="row it-row">
+              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <div class="day-cell">Day 1</div>
               <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>18 Aug</div>
               <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg><span class="ell primary-cell" data-tip="Mumbai → Dubai · arrival transfer, hotel check-in">Mumbai → Dubai · arrival transfer, hotel check-in</span></div>
@@ -944,31 +869,31 @@
             </div>
 
             <div class="row it-row">
-              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select Day 2"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <div class="day-cell">Day 2</div>
               <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>19 Aug</div>
               <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="ell primary-cell" data-tip="Dubai · private city tour">Dubai · private city tour</span></div>
               <div class="ell muted-cell">Activity</div>
             </div>
 
-            <div class="row it-row is-leisure">
-              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select Day 3"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+            <div class="row it-row">
+              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <div class="day-cell">Day 3</div>
               <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>20 Aug</div>
               <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span class="ell primary-cell">Dubai · at leisure</span></div>
               <div class="ell muted-cell">—</div>
             </div>
 
-            <div class="row it-row is-leisure">
-              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select Day 4"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+            <div class="row it-row">
+              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <div class="day-cell">Day 4</div>
               <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>21 Aug</div>
               <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span class="ell primary-cell">Dubai · at leisure</span></div>
               <div class="ell muted-cell">—</div>
             </div>
 
-            <div class="row it-row is-travel">
-              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select Day 5"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+            <div class="row it-row">
+              <div class="cell-check"><div class="cbx it-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <div class="day-cell">Day 5</div>
               <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>22 Aug</div>
               <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg><span class="ell primary-cell" data-tip="Dubai → Mumbai · departure transfer">Dubai → Mumbai · departure transfer</span></div>
@@ -990,12 +915,12 @@
         </div>
 
         <!-- ============ VOUCHERS ============ -->
-        <div class="panel" id="panel-vouchers" role="tabpanel" aria-labelledby="tab-vouchers">
+        <div class="panel" id="panel-vouchers" role="tabpanel">
 
           <div class="toolbar">
             <div class="search" style="flex:1 1 260px;max-width:none">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9298A2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
-              <input type="search" name="voucher-search" placeholder="Search service or voucher file…" aria-label="Search vouchers" autocomplete="off">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9298A2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="text" placeholder="Search service or voucher file">
             </div>
             <button class="btn btn-ghost btn-sm" style="height:36px" data-tip="Filter by kind"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filter</button>
             <button class="btn btn-primary" style="height:36px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>Upload voucher</button>
@@ -1003,7 +928,7 @@
 
           <div class="sheet sheet-vo">
             <div class="row-head">
-              <div class="cell-check"><div class="cbx" data-select-all="vo" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select all vouchers" data-tip="Select all vouchers"><span class="dash" style="display:none"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-check"><div class="cbx" data-select-all="vo" role="checkbox" tabindex="0" data-tip="Select all vouchers"><span class="dash" style="display:none"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
               <span>Service</span><span>Voucher</span><span>State</span><span>Details</span><span>Action</span>
             </div>
 
@@ -1013,31 +938,31 @@
               <span class="g-count">3</span>
             </div>
 
-            <div class="row vo-row row-bad">
-              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select Tamara Hotel voucher"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12"/><path d="M2 20h20M6 6V4h6v2M9 12h.01M14 12h4M14 16h4"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Tamara Hotel · Deluxe room">Tamara Hotel · Deluxe room</div><div class="vk">Hotel</div></div></div>
+            <div class="row vo-row">
+              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12"/><path d="M2 20h20M6 6V4h6v2M9 12h.01M14 12h4M14 16h4"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Tamara Hotel · Deluxe room">Tamara Hotel · Deluxe room</div><div class="vk">Hotel</div></div></div>
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-bad"><span class="d"></span>Blocked</span></div>
               <div class="ell muted-cell" data-tip="Confirm the service to prepare its voucher">Confirm the service to prepare its voucher</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Open service</button><button class="more-btn reveal" type="button" data-tip="More" aria-label="More actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Open service</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
-            <div class="row vo-row row-warn">
-              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select UAE visa voucher"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 17a3.5 3.5 0 0 1 7 0"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="UAE visa assistance">UAE visa assistance</div><div class="vk">Visa</div></div></div>
+            <div class="row vo-row">
+              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 17a3.5 3.5 0 0 1 7 0"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="UAE visa assistance">UAE visa assistance</div><div class="vk">Visa</div></div></div>
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-warn"><span class="d"></span>Awaiting</span></div>
               <div class="ell muted-cell" data-tip="Upload the supplier voucher">Upload the supplier voucher</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Upload</button><button class="more-btn reveal" type="button" data-tip="More" aria-label="More actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Upload</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
-            <div class="row vo-row row-bad">
-              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select departure transfer voucher"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3V6a1 1 0 0 1 1-1h11v12h-2"/><path d="M14 9h4l3 4v4h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Tamara Hotel → Dubai Airport">Tamara Hotel → Dubai Airport</div><div class="vk">Transfer</div></div></div>
+            <div class="row vo-row">
+              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V6a1 1 0 0 1 1-1h11v12h-2"/><path d="M14 9h4l3 4v4h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Tamara Hotel → Dubai Airport">Tamara Hotel → Dubai Airport</div><div class="vk">Transfer</div></div></div>
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-bad"><span class="d"></span>Blocked</span></div>
               <div class="ell muted-cell" data-tip="Assign a vendor and confirm the service">Assign a vendor and confirm the service</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Open service</button><button class="more-btn reveal" type="button" data-tip="More" aria-label="More actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">Open service</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="grouphead gh-ok">
@@ -1046,22 +971,22 @@
               <span class="g-count">2</span>
             </div>
 
-            <div class="row vo-row row-ok">
-              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select arrival transfer voucher"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3V6a1 1 0 0 1 1-1h11v12h-2"/><path d="M14 9h4l3 4v4h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Dubai Airport → Tamara Hotel">Dubai Airport → Tamara Hotel</div><div class="vk">Transfer</div></div></div>
+            <div class="row vo-row">
+              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3V6a1 1 0 0 1 1-1h11v12h-2"/><path d="M14 9h4l3 4v4h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Dubai Airport → Tamara Hotel">Dubai Airport → Tamara Hotel</div><div class="vk">Transfer</div></div></div>
               <div style="min-width:0"><a href="#" class="file-link ell" data-tip="desert-wheels-arrival-transfer.pdf" style="display:block">desert-wheels-arrival-transfer.pdf</a></div>
               <div><span class="tag t-ok"><span class="d"></span>Sent</span></div>
               <div class="ell muted-cell">v1 · sent 9 Aug · 18:05</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">View</button><button class="more-btn reveal" type="button" data-tip="More" aria-label="More actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">View</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
-            <div class="row vo-row row-ok">
-              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0" aria-checked="false" aria-label="Select city tour voucher"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Private Dubai city tour">Private Dubai city tour</div><div class="vk">Activity</div></div></div>
+            <div class="row vo-row">
+              <div class="cell-check"><div class="cbx vo-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
+              <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Private Dubai city tour">Private Dubai city tour</div><div class="vk">Activity</div></div></div>
               <div style="min-width:0"><a href="#" class="file-link ell" data-tip="city-tour-voucher-v1.pdf" style="display:block">city-tour-voucher-v1.pdf</a></div>
               <div><span class="tag t-ok"><span class="d"></span>Sent</span></div>
               <div class="ell muted-cell">v1 · sent 10 Aug · 14:50</div>
-              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">View</button><button class="more-btn reveal" type="button" data-tip="More" aria-label="More actions"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:7px"><button class="btn btn-ghost btn-sm">View</button><button class="more-btn reveal" data-tip="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="bulk" data-bulk="vo">
@@ -1086,14 +1011,14 @@
         </div>
 
         <!-- ============ UNDESIGNED TABS (placeholder) ============ -->
-        <div class="panel" id="panel-services" role="tabpanel" aria-labelledby="tab-services"></div>
-        <div class="panel" id="panel-fulfilment" role="tabpanel" aria-labelledby="tab-fulfilment"></div>
-        <div class="panel" id="panel-travellers" role="tabpanel" aria-labelledby="tab-travellers"></div>
-        <div class="panel" id="panel-documents" role="tabpanel" aria-labelledby="tab-documents"></div>
-        <div class="panel" id="panel-finance" role="tabpanel" aria-labelledby="tab-finance"></div>
+        <div class="panel" id="panel-services" role="tabpanel"></div>
+        <div class="panel" id="panel-fulfilment" role="tabpanel"></div>
+        <div class="panel" id="panel-travellers" role="tabpanel"></div>
+        <div class="panel" id="panel-documents" role="tabpanel"></div>
+        <div class="panel" id="panel-finance" role="tabpanel"></div>
 
         <!-- ============ COMMUNICATION ============ -->
-        <div class="panel" id="panel-communication" role="tabpanel" aria-labelledby="tab-communication">
+        <div class="panel" id="panel-communication" role="tabpanel">
           <div class="comm">
             <div class="comm-list">
               <div class="comm-lhead"><span class="lbl">Conversations</span><span class="sum" id="commSum">2 unread</span></div>
@@ -1106,7 +1031,7 @@
               </div>
               <div class="thread-body" id="thBody"></div>
               <div class="composer">
-                <textarea id="thReply" rows="2" placeholder="Reply…" aria-label="Reply to conversation"></textarea>
+                <textarea id="thReply" rows="2" placeholder="Reply…"></textarea>
                 <div class="composer-row">
                   <div style="display:flex;align-items:center;gap:7px">
                     <button class="btn btn-ghost btn-sm btn-icon" data-tip="Attach a file"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
@@ -1119,10 +1044,10 @@
           </div>
         </div>
 
-        <div class="panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity"></div>
+        <div class="panel" id="panel-activity" role="tabpanel"></div>
 
         </div>
-        <div class="sticky-bulk" data-bulk="it" id="itBulk" aria-live="polite">
+        <div class="sticky-bulk" data-bulk="it" id="itBulk">
           <span class="lbl"><span data-count="it">0</span> itinerary days selected</span>
           <div style="display:flex;gap:7px">
             <button class="btn btn-ghost btn-sm">Export</button>
@@ -1138,14 +1063,14 @@
 </div>
 
 <!-- ===================== NOTES DRAWER ===================== -->
-<div class="nd-overlay" id="ndOverlay" aria-hidden="true" inert>
+<div class="nd-overlay" id="ndOverlay">
   <aside class="nd" role="dialog" aria-modal="true" aria-label="Booking notes">
     <div class="nd-head">
       <div class="nd-eyebrow">Bookings · BK-2026-000003</div>
       <div class="nd-headrow">
         <div class="nd-title" id="ndTitle">Booking notes</div>
         <button class="nd-mode" id="ndModeBtn">Write a note</button>
-        <button class="nd-close" id="ndClose" data-tip="Close" aria-label="Close notes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        <button class="nd-close" id="ndClose" data-tip="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
     </div>
 
@@ -1154,7 +1079,7 @@
       <div class="nd-body">
         <div class="nd-search">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9298A2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="search" id="ndFind" placeholder="Search notes…" aria-label="Search notes" autocomplete="off">
+          <input type="text" id="ndFind" placeholder="Search notes">
         </div>
         <div class="nd-filters">
           <button class="nd-fil on" data-filter="all">All</button>
@@ -1291,32 +1216,11 @@
       x.classList.toggle('active', on);
       x.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    document.querySelectorAll('.panel').forEach(function(p){
-      var on = p.id === 'panel-' + id;
-      p.classList.toggle('show', on);
-      p.hidden = !on;
-    });
-    if(history.replaceState){
-      var next = '#' + id;
-      if(location.hash !== next) history.replaceState(null, '', next);
-    }
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('show')});
+    var panel = document.getElementById('panel-' + id);
+    if(panel) panel.classList.add('show');
     layoutTabs();
   }
-
-(function(){
-  function applyHash(){
-    var id = (location.hash || '#overview').slice(1);
-    if(TAB_ORDER.indexOf(id) !== -1){
-      activateTab(id);
-      return;
-    }
-    var el = document.getElementById(id);
-    if(el) el.scrollIntoView({block:'start'});
-  }
-  applyHash();
-  window.addEventListener('hashchange', applyHash);
-  window.addEventListener('load', applyHash);
-})();
 
   document.querySelectorAll('.tab[data-tab]').forEach(function(t){
     t.addEventListener('click', function(){ activateTab(t.dataset.tab); });
@@ -1350,23 +1254,6 @@
   }
   layoutTabs();
 
-  (function(){
-    var chrome = document.getElementById('chrome');
-    var record = document.querySelector('.record');
-    var ctx = document.getElementById('ctxBar');
-    var root = document.querySelector('.scroll');
-    if(!chrome || !record || !root || !window.IntersectionObserver) return;
-    new IntersectionObserver(function(entries){
-      var stuck = !entries[0].isIntersecting;
-      chrome.classList.toggle('is-stuck', stuck);
-      if(ctx) ctx.setAttribute('aria-hidden', stuck ? 'false' : 'true');
-    }, { root: root, threshold: 0, rootMargin: '-1px 0px 0px 0px' }).observe(record);
-  })();
-
-  document.querySelectorAll('.panel').forEach(function(p){
-    if(!p.classList.contains('show')) p.hidden = true;
-  });
-
   function wireGroup(cbxClass, group){
     var boxes = Array.prototype.slice.call(document.querySelectorAll('.' + cbxClass));
     var all = document.querySelector('[data-select-all="' + group + '"]');
@@ -1385,16 +1272,16 @@
       else { dash.style.display='none'; }
     }
     boxes.forEach(function(b){
-      b.addEventListener('click', function(){ b.classList.toggle('on'); b.setAttribute('aria-checked', b.classList.contains('on') ? 'true' : 'false'); refresh(); });
+      b.addEventListener('click', function(){ b.classList.toggle('on'); b.setAttribute('aria-checked', b.classList.contains('on')); refresh(); });
       b.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){e.preventDefault(); b.click();} });
     });
     all.addEventListener('click', function(){
       var turnOn = !(boxes.every(function(b){return b.classList.contains('on')}));
-      boxes.forEach(function(b){ b.classList.toggle('on', turnOn); b.setAttribute('aria-checked', turnOn ? 'true' : 'false'); });
+      boxes.forEach(function(b){ b.classList.toggle('on', turnOn); });
       refresh();
     });
     all.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){e.preventDefault(); all.click();} });
-    if(clearBtn) clearBtn.addEventListener('click', function(){ boxes.forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-checked','false'); }); refresh(); });
+    if(clearBtn) clearBtn.addEventListener('click', function(){ boxes.forEach(function(b){ b.classList.remove('on'); }); refresh(); });
     refresh();
   }
   wireGroup('it-cbx','it');
@@ -1461,13 +1348,9 @@
       modeBtn.textContent = isCompose ? 'All notes' : 'Write a note';
       if(!isCompose) render();
     }
-    var lastFocus = null;
     function open(mode){
-      lastFocus = document.activeElement;
       setMode(mode);
       overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden','false');
-      overlay.inert = false;
       var r = anchor.getBoundingClientRect();
       var w = nd.offsetWidth, h = nd.offsetHeight, gap = 10, pad = 12;
       var left = r.right + gap;
@@ -1477,15 +1360,8 @@
       nd.style.left = left + 'px';
       nd.style.top = top + 'px';
       nd.style.transformOrigin = (left > r.left ? 'top left' : 'top right');
-      var focusEl = mode === 'compose' ? document.getElementById('ndText') : document.getElementById('ndFind');
-      if(focusEl) focusEl.focus();
     }
-    function close(){
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden','true');
-      overlay.inert = true;
-      if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-    }
+    function close(){ overlay.classList.remove('open'); }
 
     document.querySelector('.notes-main').addEventListener('click', function(){ open('browse'); });
     document.querySelector('.notes-add').addEventListener('click', function(){ open('compose'); });
