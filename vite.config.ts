@@ -1,6 +1,7 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
 import path from 'node:path'
 
 import siteConfiguration from './.figma/make/site.json'
@@ -17,6 +18,7 @@ export default defineConfig(({ mode }) => {
       minify: !emitSourcemaps,
     },
     plugins: [
+      serveBookingHtmlAsIndex(),
       react(),
       tailwindcss(),
       figmaSiteConfiguration(siteConfiguration),
@@ -41,6 +43,31 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
+
+/** Serves the standalone booking HTML at `/` so Figma capture and Vercel get a real page, not an empty React iframe. */
+function serveBookingHtmlAsIndex(): Plugin {
+  const source = path.resolve(__dirname, 'booking-redesign.html')
+
+  return {
+    name: 'serve-booking-html-as-index',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const pathName = req.url?.split('?')[0]
+        if (pathName === '/' || pathName === '/index.html') {
+          const query = req.url?.includes('?') ? req.url.slice(req.url.indexOf('?')) : ''
+          req.url = '/booking-redesign.html' + query
+        }
+        next()
+      })
+    },
+    closeBundle() {
+      const distDir = path.resolve(__dirname, 'dist')
+      if (!fs.existsSync(source) || !fs.existsSync(distDir)) return
+      fs.copyFileSync(source, path.join(distDir, 'index.html'))
+      fs.copyFileSync(source, path.join(distDir, 'booking-redesign.html'))
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string
