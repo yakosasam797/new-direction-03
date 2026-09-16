@@ -25,7 +25,9 @@
     --ink-4:#8A909A;   /* disabled / decorative only */
     --line:#E4E7EC;
     --line-2:#EEF0F3;
-    /* ---- identity accents ---- */
+    /* ---- identity accents ----
+       teal = work (brand, primary actions, completion)
+       pink = place and person (selected chrome, notes, account) */
     --accent:#0F6E63;
     --accent-ink:#0B544B;
     --accent-soft:#E7F2F0;
@@ -41,7 +43,7 @@
     /* soft, light shadows — not dark */
     --blockShadow:0 1px 2px rgba(23,43,77,.045);
     --panelShadow:0 1px 3px rgba(23,43,77,.05);
-    --focus:#0F6E63;
+    --focus:#A5537E;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;height:100%;width:100%;max-width:100%;overflow-x:hidden}
@@ -50,8 +52,8 @@
     color:var(--ink);background:var(--ground);-webkit-font-smoothing:antialiased;
   }
   h1,h2,h3,h4{font-family:'Onest',system-ui,sans-serif;letter-spacing:-0.02em;margin:0}
-  a{color:var(--accent-ink);text-decoration:none}
-  a:hover{color:var(--accent)}
+  a{color:var(--pink-ink);text-decoration:none}
+  a:hover{color:var(--pink)}
   .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
   ::selection{background:#F1D6E3}
   *{scrollbar-width:thin;scrollbar-color:transparent transparent}
@@ -95,11 +97,11 @@
 
   .notes{margin:2px 12px 6px;display:flex;align-items:center;height:38px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
   .notes-main{flex:1;display:flex;align-items:center;gap:9px;padding:0 8px 0 12px;height:100%;color:var(--ink);font-size:13px;font-weight:600;cursor:pointer}
-  .notes-main svg{color:var(--ink-2)}
-  .notes-main:hover{background:var(--surface-3)}
-  .notes-badge{margin-left:auto;display:inline-grid;place-items:center;min-width:20px;height:18px;padding:0 6px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
-  .notes-add{width:38px;height:100%;display:grid;place-items:center;border:none;border-left:1px solid var(--line);background:transparent;color:var(--accent);cursor:pointer}
-  .notes-add:hover{background:var(--accent-soft)}
+  .notes-main svg{color:var(--pink)}
+  .notes-main:hover{background:var(--pink-soft)}
+  .notes-badge{margin-left:auto;display:inline-grid;place-items:center;min-width:20px;height:18px;padding:0 6px;border-radius:999px;background:var(--pink-soft);color:var(--pink-ink);border:1px solid var(--pink-line);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600}
+  .notes-add{width:38px;height:100%;display:grid;place-items:center;border:none;border-left:1px solid var(--line);background:transparent;color:var(--pink);cursor:pointer}
+  .notes-add:hover{background:var(--pink-soft)}
 
   .side-scroll{flex:1;min-height:0;overflow-y:auto;padding:6px 10px 12px}
   .side-group{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:700;padding:0 10px;margin:16px 0 6px}
@@ -107,8 +109,8 @@
   .nav-item svg{flex:none;color:var(--ink-2)}
   .nav-item:hover{background:var(--side-hover);color:var(--ink)}
   .nav-item:hover svg{color:var(--ink)}
-  .nav-item.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
-  .nav-item.active svg{color:var(--accent)}
+  .nav-item.active{background:var(--pink-soft);color:var(--pink-ink);font-weight:600}
+  .nav-item.active svg{color:var(--pink)}
   .side-foot{padding:12px;border-top:1px solid var(--line)}
   .side-collapse{display:flex;align-items:center;gap:10px;width:100%;height:34px;padding:0 11px;margin-top:12px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
   .side-collapse:hover{background:var(--side-hover);color:var(--ink)}
@@ -140,13 +142,13 @@
   .back-btn:hover{background:var(--surface-3);color:var(--ink)}
   .search{display:flex;align-items:center;gap:9px;height:36px;padding:0 6px 0 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-3);min-width:0}
   .topbar .search{flex:0 1 340px;max-width:380px}
-  .search:focus-within{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
+  .search:focus-within{border-color:var(--pink);background:var(--surface);box-shadow:0 0 0 3px rgba(165,83,126,.12)}
   .search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:inherit;font-size:13.5px;color:var(--ink)}
   .search input::placeholder{color:var(--ink-3)}
   .search > svg{color:var(--ink-2);flex:none}
-  .search-scope{display:flex;align-items:center;gap:5px;height:26px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
-  .search-scope:hover{background:var(--surface-3);color:var(--ink)}
-  .search-scope svg{color:var(--ink-2)}
+  .search-scope{display:flex;align-items:center;gap:5px;height:26px;padding:0 8px;border:1px solid var(--pink);border-radius:8px;background:var(--surface);color:var(--pink);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
+  .search-scope:hover{background:var(--pink-soft);color:var(--pink-ink)}
+  .search-scope svg{color:var(--pink)}
   .icon-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;position:relative;flex:none}
   .icon-btn:hover{background:var(--surface-3);color:var(--ink)}
   .acct{display:flex;align-items:center;gap:4px;height:36px;padding:0 8px 0 6px;border:1px solid var(--pink-line);border-radius:10px;background:var(--surface);color:var(--pink);font-family:'Onest',sans-serif;font-size:13px;font-weight:600;cursor:pointer;flex:none}
@@ -162,7 +164,7 @@
     --page-pad:clamp(16px, 2.2cqi, 52px);
     --check-col:calc(var(--page-pad) + 46px);
     --it-cols:var(--check-col) 88px 112px minmax(200px, 28rem) minmax(132px, 13rem);
-    --vo-cols:var(--check-col) minmax(160px, 20rem) minmax(128px, 15rem) 120px minmax(140px, 16rem) 176px;
+    --vo-cols:var(--check-col) minmax(168px, 1.1fr) minmax(124px, 0.85fr) 108px minmax(220px, 1.8fr) max-content;
     width:100%;
     max-width:2000px;
     min-width:0;
@@ -175,10 +177,11 @@
     padding:16px var(--page-pad) 0;
   }
 
-  .crumbs{display:flex;flex-wrap:nowrap;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);min-width:0;flex:1 1 auto;overflow:hidden}
-  .crumbs svg{color:var(--ink-2);flex:none}
-  .crumbs a,.crumbs .here{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .crumbs .here{color:var(--ink);font-weight:600}
+  .crumbs{display:flex;flex-wrap:nowrap;align-items:center;gap:7px;font-size:13px;color:var(--ink);min-width:0;flex:1 1 auto;overflow:hidden}
+  .crumbs svg{color:var(--ink-3);flex:none}
+  .crumbs a,.crumbs .here{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+  .crumbs a:hover{color:var(--ink)}
+  .crumbs .here{font-weight:600}
 
   /* bento block */
   .block{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;margin-bottom:20px;box-shadow:var(--blockShadow)}
@@ -187,8 +190,8 @@
 
   .record{
     display:flex;align-items:center;justify-content:space-between;gap:14px 24px;flex-wrap:wrap;
-    border:1px solid #E3EEEC;border-radius:16px;padding:16px 22px;margin-bottom:8px;overflow:visible;min-width:0;
-    background:linear-gradient(105deg, #F6FBFA 0%, #FBFDFC 42%, #FFFFFF 100%);
+    border:1px solid var(--line);border-radius:16px;padding:16px 22px;margin-bottom:8px;overflow:visible;min-width:0;
+    background:var(--surface);
   }
   .rec-main{min-width:0;flex:1 1 14rem}
   .rec-title-row{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin-bottom:8px}
@@ -203,11 +206,11 @@
     font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;color:var(--ink);letter-spacing:-.01em;
   }
   .bk-ref svg{color:var(--ink-2);flex:none}
-  .bk-ref:hover{border-color:#C4D9D5;color:var(--accent-ink)}
-  .bk-ref:hover svg{color:var(--accent)}
-  .q-ref{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--accent-ink)}
-  .q-ref svg{color:var(--accent);flex:none}
-  .q-ref:hover{color:var(--accent)}
+  .bk-ref:hover{border-color:var(--pink-line);color:var(--pink-ink)}
+  .bk-ref:hover svg{color:var(--pink)}
+  .q-ref{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--pink-ink)}
+  .q-ref svg{color:var(--pink);flex:none}
+  .q-ref:hover{color:var(--pink)}
   .tags{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
   .record .tag{height:22px;padding:0 9px;font-size:11.5px}
   .tag{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid transparent;text-decoration:none}
@@ -222,15 +225,13 @@
   .owner b{display:block;font-size:13px;color:var(--ink);font-weight:600;line-height:1.2}
   .owner span{display:block;font-size:11.5px;color:var(--ink-2);margin-top:2px}
   .avstack{display:flex}
-  .avstack .avatar{margin-left:-8px;border:2px solid #E7F2EF}
+  .avstack .avatar{margin-left:-8px;border:2px solid var(--surface)}
   .avstack .avatar:first-child{margin-left:0}
   /* ===== button system =====
-     Four weights, one geometry. Identity lives in fill — not size, not a brand wash.
-     ghost   outline, white, ink + icon     — row actions, secondary chrome
-     subtle  neutral gray fill, ink + icon  — quiet presence, never a teal tint
-     primary solid teal, white + icon       — the one page action
-     secondary solid pink, white + icon     — distinctive send / attach
-     Brand-tint (--accent-soft) is for state (selected, chips), not actions. */
+     primary solid pink              — page CTAs
+     brand   outline, pink stroke+text
+     secondary solid pink            — send / attach
+     Sidebar mark and Upgrade stay teal. Status greens stay semantic. */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .12s ease,border-color .12s ease,color .12s ease}
   .btn svg{flex:none}
   .btn:disabled{opacity:.5;cursor:not-allowed}
@@ -241,32 +242,46 @@
   .btn-icon.btn-lg{width:44px}
   .btn-icon.btn-sm{width:32px}
   .btn-icon.btn-xs{width:27px}
-  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
-  .btn-primary:active{background:#094840;border-color:#094840}
+  .btn-primary{background:var(--pink);color:#fff;border-color:var(--pink)}
+  .btn-primary:hover{background:var(--pink-ink);border-color:var(--pink-ink)}
+  .btn-primary:active{background:#6E3352;border-color:#6E3352}
   .btn-secondary{background:var(--pink);color:#fff;border-color:var(--pink)}
   .btn-secondary:hover{background:var(--pink-ink);border-color:var(--pink-ink)}
   .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{background:var(--surface-3);border-color:#D7DBE1;color:var(--ink)}
   .btn-ghost:active{background:var(--surface-2)}
+  .btn-brand{background:var(--surface);color:var(--pink);border-color:var(--pink)}
+  .btn-brand:hover{background:var(--pink-soft);color:var(--pink-ink);border-color:var(--pink-ink)}
+  .btn-brand:active{background:#F4E1EA}
   .btn-subtle{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
   .btn-subtle:hover{background:#E8ECF0;border-color:#D7DBE1;color:var(--ink)}
   .btn-danger{background:var(--surface);color:var(--bad);border-color:var(--bad-line)}
   .btn-danger:hover{background:var(--bad-bg)}
-  .row-acts{display:flex;align-items:center;gap:6px}
+  .row-acts{display:flex;align-items:center;gap:10px}
+  .sheet-vo .row-head > :nth-child(6),
+  .sheet-vo .row > :nth-child(6){
+    padding-left:32px;
+    padding-right:12px;
+  }
+  .sheet-vo .row-acts .more-btn{
+    width:28px;height:28px;border-color:transparent;background:transparent;color:var(--ink-3);
+  }
+  .sheet-vo .row-acts .more-btn:hover{
+    background:var(--surface-3);color:var(--ink);border-color:var(--line);
+  }
 
   /* full tab bar — underline style; More appears only when tabs overflow */
   .chrome{position:sticky;top:0;z-index:30;background:var(--panel-ground);padding-top:20px;margin:0 calc(var(--page-pad) * -1);padding-left:var(--page-pad);padding-right:var(--page-pad);min-width:0;flex:none}
   .tabbar{display:flex;align-items:stretch;gap:2px;margin:0;border-bottom:1px solid var(--line);min-width:0;width:100%;max-width:100%}
   .tab{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 10px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--ink-2);font-family:'Onest',sans-serif;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;margin-bottom:-1px;flex:none}
   .tab:hover{color:var(--ink)}
-  .tab.active{color:var(--accent);font-weight:600;border-bottom-color:var(--accent)}
+  .tab.active{color:var(--pink);font-weight:600;border-bottom-color:var(--pink)}
   .tab .chip{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:6px;background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line);font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600}
   .tab-more{position:relative;margin-left:auto;flex:none;display:none;background:var(--panel-ground);padding-left:4px;z-index:2}
   .tab-more-menu{display:none;position:absolute;right:0;top:calc(100% + 4px);min-width:220px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(20,26,33,.16);padding:6px;z-index:40}
   .tab-more-menu.open{display:block}
   .tab-more-menu .tab{display:flex;width:100%;height:auto;padding:9px 12px;border:none;margin:0;border-radius:8px}
-  .tab-more-menu .tab.active{background:var(--accent-soft);border-bottom:none}
+  .tab-more-menu .tab.active{background:var(--pink-soft);color:var(--pink-ink);border-bottom:none}
   .panels{flex:1;display:flex;flex-direction:column;min-height:0;margin-top:32px}
 
   .panel{display:none}
@@ -290,8 +305,8 @@
   .sf-value{display:flex;align-items:center;gap:8px;margin-top:9px;font-family:'Onest',sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);min-width:0}
   .sf-value svg{color:var(--ink-2);flex:none}
   .sf-value .ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .sf-value a{color:var(--accent-ink)}
-  .sf-value a:hover{color:var(--accent)}
+  .sf-value a{color:var(--pink-ink)}
+  .sf-value a:hover{color:var(--pink)}
 
   /* open sheet table — canvas rows, column rules, no outer rectangle */
   .sheet{margin:0 calc(var(--page-pad) * -1);overflow-x:auto;min-width:0;max-width:none}
@@ -318,7 +333,7 @@
   .sheet-it .row-head,
   .sheet-it .row{grid-template-columns:var(--it-cols) minmax(0,1fr)}
   .sheet-vo .row-head,
-  .sheet-vo .row{grid-template-columns:var(--vo-cols) minmax(0,1fr)}
+  .sheet-vo .row{grid-template-columns:var(--vo-cols) minmax(20px, 0.35fr)}
   .sheet-it .row-head::after,
   .sheet-it .row::after,
   .sheet-vo .row-head::after,
@@ -384,9 +399,9 @@
 
   .cbx{width:18px;height:18px;border:1.6px solid #C6CAD1;border-radius:5px;background:var(--surface);display:grid;place-items:center;cursor:pointer;color:#fff;flex:none}
   .cbx svg{opacity:0;transition:opacity .1s ease}
-  .cbx.on{background:var(--accent);border-color:var(--accent)}
+  .cbx.on{background:var(--pink);border-color:var(--pink)}
   .cbx.on svg{opacity:1}
-  .cbx.some{background:var(--accent);border-color:var(--accent)}
+  .cbx.some{background:var(--pink);border-color:var(--pink)}
   .cbx.some .dash{width:9px;height:2px;background:#fff;border-radius:2px}
 
   .vk{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-top:3px}
@@ -394,18 +409,18 @@
   .not-up{font-size:13px;color:var(--ink-2);font-style:italic}
   .more-btn{color:var(--ink-2)}
 
-  .bulk{display:none;align-items:center;justify-content:space-between;gap:12px;padding:11px var(--page-pad);border-bottom:1px solid var(--line);background:var(--accent-soft);min-width:0}
+  .bulk{display:none;align-items:center;justify-content:space-between;gap:12px;padding:11px var(--page-pad);border-bottom:1px solid var(--line);background:var(--pink-soft);min-width:0}
   .bulk.show{display:flex}
   .sticky-bulk{display:none;position:sticky;bottom:0;z-index:25;align-items:center;justify-content:space-between;gap:12px;margin:12px calc(var(--page-pad) * -1) 0;padding:12px var(--page-pad);border-top:1px solid var(--line);background:var(--surface);box-shadow:0 -8px 24px rgba(23,43,77,.08)}
   .sticky-bulk.show{display:flex}
-  .bulk .lbl{font-size:12.5px;font-weight:600;color:var(--accent-ink)}
+  .bulk .lbl{font-size:12.5px;font-weight:600;color:var(--pink-ink)}
   .sheet-grow .bulk{border-top:1px solid var(--line)}
   .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px var(--page-pad) 16px;min-width:0;border-top:1px solid var(--line);background:var(--panel-ground);position:relative;z-index:1}
   .foot .range{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2)}
   .pager{display:flex;align-items:center;gap:5px}
   .pg{min-width:30px;height:30px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;display:grid;place-items:center}
   .pg:hover{background:var(--surface-3)}
-  .pg.active{background:var(--accent-soft);color:var(--accent-ink);border-color:#C4D9D5}
+  .pg.active{background:var(--pink-soft);color:var(--pink-ink);border-color:var(--pink-line)}
   .pg:disabled{opacity:1;color:var(--ink-4);border-color:var(--line-2);cursor:not-allowed}
   .pg:disabled:hover{background:var(--surface)}
 
@@ -426,7 +441,7 @@
   .comm-scroll{overflow-y:auto;max-height:560px}
   .convo{display:block;width:100%;text-align:left;padding:13px 16px;border:none;border-bottom:1px solid var(--line-2);border-left:3px solid transparent;background:var(--surface);cursor:pointer;font-family:inherit}
   .convo:hover{background:var(--surface-3)}
-  .convo.on{background:var(--accent-soft);border-left-color:var(--accent)}
+  .convo.on{background:var(--pink-soft);border-left-color:var(--pink)}
   .convo-top{display:flex;align-items:center;gap:10px;min-width:0}
   .conv-av{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-family:'Onest',sans-serif;font-size:12.5px;font-weight:700;flex:none}
   .conv-idns{min-width:0;flex:1}
@@ -439,7 +454,7 @@
   .chan{display:inline-flex;align-items:center;height:21px;padding:0 9px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid transparent}
   .chan-wa{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}
   .chan-em{background:#E8F0FB;color:#1D4ED8;border-color:#CFE0F7}
-  .chip-unread{display:inline-flex;align-items:center;height:21px;padding:0 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);border:1px solid #C4D9D5;font-size:11px;font-weight:600}
+  .chip-unread{display:inline-flex;align-items:center;height:21px;padding:0 9px;border-radius:999px;background:var(--pink-soft);color:var(--pink-ink);border:1px solid var(--pink-line);font-size:11px;font-weight:600}
 
   .comm-thread{display:flex;flex-direction:column;min-width:0}
   .thread-head{padding:15px 22px;background:var(--panel-ground);border-bottom:1px solid var(--line)}
@@ -449,18 +464,18 @@
   .thread-body{flex:1;min-height:300px;max-height:432px;overflow-y:auto;padding:18px 22px;display:flex;flex-direction:column;gap:12px;background:var(--panel-ground)}
   .msg{max-width:80%;padding:11px 14px;border-radius:15px;font-size:13px;line-height:1.5}
   .msg-in{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--ink)}
-  .msg-out{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px}
+  .msg-out{align-self:flex-end;background:var(--pink);color:#fff;border-bottom-right-radius:5px}
   .msg-meta{font-size:11px;margin-top:8px}
   .msg-in .msg-meta{color:var(--ink-2)}
   .msg-out .msg-meta{color:rgba(255,255,255,.82)}
   .msg-att{margin-top:11px;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-3)}
   .att-title{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink)}
-  .att-title svg{color:var(--accent)}
+  .att-title svg{color:var(--pink)}
   .att-file{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2);margin-top:5px}
   .att-acts{display:flex;gap:7px;margin-top:10px}
   .composer{padding:14px 22px 16px;border-top:1px solid var(--line);background:var(--surface)}
   .composer textarea{width:100%;min-height:60px;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-family:inherit;font-size:14px;color:var(--ink);resize:vertical;outline:none;background:var(--surface-3)}
-  .composer textarea:focus{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
+  .composer textarea:focus{border-color:var(--pink);background:var(--surface);box-shadow:0 0 0 3px rgba(165,83,126,.12)}
   .composer textarea::placeholder{color:var(--ink-3)}
   .composer-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
   @media(max-width:820px){ .comm{grid-template-columns:1fr} .comm-list{border-right:none;border-bottom:1px solid var(--line)} .comm-scroll{max-height:260px} }
@@ -471,7 +486,7 @@
   .nd{position:fixed;width:min(388px,calc(100vw - 24px));max-height:min(600px,calc(100vh - 24px));display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:15px;box-shadow:0 20px 54px rgba(20,26,33,.22),0 2px 8px rgba(20,26,33,.08);transform:scale(.95);opacity:0;transform-origin:top left;transition:transform .18s cubic-bezier(.4,0,.2,1),opacity .16s ease;overflow:hidden}
   .nd-overlay.open .nd{transform:scale(1);opacity:1}
   .nd-head{padding:15px 16px 13px;border-bottom:1px solid var(--line);flex:none}
-  .nd-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.02em;color:var(--accent-ink);margin-bottom:7px}
+  .nd-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.02em;color:var(--pink-ink);margin-bottom:7px}
   .nd-headrow{display:flex;align-items:center;gap:10px}
   .nd-title{font-size:16px;font-weight:700;color:var(--ink);flex:1}
   .nd-mode{height:29px;padding:0 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:'Onest',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
@@ -484,7 +499,7 @@
 
   /* compose */
   .nd-ta{width:100%;min-height:130px;resize:vertical;border:1px solid var(--line);border-radius:11px;background:var(--surface-3);padding:13px 14px;font-family:inherit;font-size:14px;color:var(--ink);outline:none}
-  .nd-ta:focus{border-color:#C4D9D5;background:var(--surface);box-shadow:0 0 0 3px rgba(15,110,99,.08)}
+  .nd-ta:focus{border-color:var(--pink);background:var(--surface);box-shadow:0 0 0 3px rgba(165,83,126,.12)}
   .nd-ta::placeholder{color:var(--ink-3)}
   .nd-field{margin-top:16px}
   .nd-flabel{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);font-weight:700;margin-bottom:8px}
@@ -497,7 +512,7 @@
   .nd-menu.open{display:block}
   .nd-opt{padding:9px 11px;border-radius:8px;font-size:13.5px;color:var(--ink);cursor:pointer}
   .nd-opt:hover{background:var(--surface-3)}
-  .nd-opt.on{color:var(--accent-ink);font-weight:600;background:var(--accent-soft)}
+  .nd-opt.on{color:var(--pink-ink);font-weight:600;background:var(--pink-soft)}
   .nd-pin{display:flex;align-items:center;gap:10px;margin-top:16px;cursor:pointer;font-size:13.5px;color:var(--ink)}
   .nd-foot{display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--line);flex:none}
 
@@ -507,15 +522,15 @@
   .nd-filters{display:flex;gap:7px;margin-bottom:16px}
   .nd-fil{height:30px;padding:0 13px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
   .nd-fil:hover{background:var(--surface-3);color:var(--ink)}
-  .nd-fil.on{background:var(--accent-soft);color:var(--accent-ink);border-color:#C4D9D5}
+  .nd-fil.on{background:var(--pink-soft);color:var(--pink-ink);border-color:var(--pink-line)}
   .nd-note{position:relative;padding:14px 0;border-top:1px solid var(--line-2)}
   .nd-note:first-child{border-top:none}
   .nd-note-top{display:flex;align-items:flex-start;gap:9px}
-  .nd-note-pin{color:var(--accent);flex:none;margin-top:2px}
+  .nd-note-pin{color:var(--pink);flex:none;margin-top:2px}
   .nd-note-body{font-size:13.5px;line-height:1.55;color:var(--ink)}
   .nd-note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--ink-2)}
   .nd-note-meta b{color:var(--ink-2);font-weight:600}
-  .nd-note-rel{font-family:'JetBrains Mono',monospace;color:var(--accent-ink);background:var(--accent-soft);padding:1px 7px;border-radius:6px;font-size:11px}
+  .nd-note-rel{font-family:'JetBrains Mono',monospace;color:var(--pink-ink);background:var(--pink-soft);padding:1px 7px;border-radius:6px;font-size:11px}
   .nd-note-acts{display:flex;gap:7px;margin-top:10px;opacity:0;transition:opacity .12s ease}
   .nd-note:hover .nd-note-acts{opacity:1}
   .nd-act{height:27px;padding:0 10px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink-2);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer}
@@ -864,7 +879,7 @@
           <div class="section section-grow">
             <div class="section-head">
             <h3>Itinerary</h3>
-            <button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>View full itinerary</button>
+            <button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>View full itinerary</button>
           </div>
 
           <div class="sheet sheet-it sheet-grow">
@@ -939,7 +954,7 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
               <input type="text" placeholder="Search service or voucher file">
             </div>
-            <button class="btn btn-ghost btn-sm" style="height:36px" data-tip="Filter by state or kind"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filter</button>
+            <button class="btn btn-brand btn-sm" style="height:36px" data-tip="Filter by state or kind"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filter</button>
             <button class="btn btn-primary" style="height:36px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>Upload voucher</button>
           </div>
 
@@ -955,7 +970,7 @@
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-bad"><span class="d"></span>Blocked</span></div>
               <div class="ell muted-cell" data-tip="Confirm the service to prepare its voucher">Confirm the service to prepare its voucher</div>
-              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open service</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -964,7 +979,7 @@
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-warn"><span class="d"></span>Awaiting</span></div>
               <div class="ell muted-cell" data-tip="Upload the supplier voucher">Upload the supplier voucher</div>
-              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>Upload</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>Upload</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -973,7 +988,7 @@
               <div style="min-width:0"><span class="not-up">Not uploaded</span></div>
               <div><span class="tag t-bad"><span class="d"></span>Blocked</span></div>
               <div class="ell muted-cell" data-tip="Assign a vendor and confirm the service">Assign a vendor and confirm the service</div>
-              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open service</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -982,7 +997,7 @@
               <div style="min-width:0"><a href="#" class="file-link ell" data-tip="desert-wheels-arrival-transfer.pdf" style="display:block">desert-wheels-arrival-transfer.pdf</a></div>
               <div><span class="tag t-ok"><span class="d"></span>Sent</span></div>
               <div class="ell muted-cell">v1 · sent 9 Aug · 18:05</div>
-              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>View</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>View</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row vo-row">
@@ -991,7 +1006,7 @@
               <div style="min-width:0"><a href="#" class="file-link ell" data-tip="city-tour-voucher-v1.pdf" style="display:block">city-tour-voucher-v1.pdf</a></div>
               <div><span class="tag t-ok"><span class="d"></span>Sent</span></div>
               <div class="ell muted-cell">v1 · sent 10 Aug · 14:50</div>
-              <div class="row-acts"><button class="btn btn-ghost btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>View</button><button class="btn btn-ghost btn-sm btn-icon more-btn reveal" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
+              <div class="row-acts"><button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>View</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
             </div>
 
             <div class="row row-fill" aria-hidden="true">
@@ -1002,7 +1017,7 @@
             <div class="bulk" data-bulk="vo">
               <span class="lbl"><span data-count="vo">0</span> vouchers selected</span>
               <div style="display:flex;gap:7px">
-                <button class="btn btn-ghost btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Export</button>
+                <button class="btn btn-brand btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Export</button>
                 <button class="btn btn-secondary btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Send vouchers</button>
                 <button class="btn btn-ghost btn-sm" data-clear="vo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Clear</button>
               </div>
@@ -1044,8 +1059,8 @@
                 <textarea id="thReply" rows="2" placeholder="Reply…"></textarea>
                 <div class="composer-row">
                   <div style="display:flex;align-items:center;gap:7px">
-                    <button class="btn btn-ghost btn-sm btn-icon" data-tip="Attach a file"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
-                    <button class="btn btn-ghost btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>Request document</button>
+                    <button class="btn btn-brand btn-sm btn-icon" data-tip="Attach a file"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+                    <button class="btn btn-brand btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>Request document</button>
                   </div>
                   <button class="btn btn-primary" id="thSend"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Send</button>
                 </div>
@@ -1060,7 +1075,7 @@
         <div class="sticky-bulk" data-bulk="it" id="itBulk">
           <span class="lbl"><span data-count="it">0</span> itinerary days selected</span>
           <div style="display:flex;gap:7px">
-            <button class="btn btn-ghost btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Export</button>
+            <button class="btn btn-brand btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Export</button>
             <button class="btn btn-secondary btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a1 1 0 0 0 1 1h4M12 18v-6M9 15h6"/></svg>Add to voucher</button>
             <button class="btn btn-ghost btn-sm" data-clear="it"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Clear</button>
           </div>
@@ -1490,7 +1505,7 @@
       thBody.innerHTML = (MSGS[c.id]||[]).map(function(m){
         var att = m[3] ? '<div class="msg-att"><div class="att-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M15 2v5h5"/></svg>'+esc(m[3])+'</div>'+
           '<div class="att-file">'+esc(m[4])+'</div>'+
-          '<div class="att-acts"><button class="btn btn-secondary btn-xs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a1 1 0 0 0 1 1h4"/></svg>Save to Documents</button><button class="btn btn-ghost btn-xs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview</button></div></div>' : '';
+          '<div class="att-acts"><button class="btn btn-secondary btn-xs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a1 1 0 0 0 1 1h4"/></svg>Save to Documents</button><button class="btn btn-brand btn-xs"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview</button></div></div>' : '';
         return '<div class="msg '+(m[0]==='out'?'msg-out':'msg-in')+'"><div>'+esc(m[1])+'</div>'+att+'<div class="msg-meta">'+esc(m[2])+'</div></div>';
       }).join('');
       thBody.scrollTop = thBody.scrollHeight;
