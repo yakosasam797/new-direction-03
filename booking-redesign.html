@@ -228,10 +228,10 @@
   .avstack .avatar{margin-left:-8px;border:2px solid var(--surface)}
   .avstack .avatar:first-child{margin-left:0}
   /* ===== button system =====
-     primary solid pink              — page CTAs
-     brand   outline, pink stroke+text
+     primary solid teal              — important CTAs
+     brand   outline, teal stroke+text
      secondary solid pink            — send / attach
-     Sidebar mark and Upgrade stay teal. Status greens stay semantic. */
+     Pink is for place (nav, tabs, notes). Pagination current page is teal. */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;font-family:'Onest',sans-serif;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .12s ease,border-color .12s ease,color .12s ease}
   .btn svg{flex:none}
   .btn:disabled{opacity:.5;cursor:not-allowed}
@@ -242,17 +242,17 @@
   .btn-icon.btn-lg{width:44px}
   .btn-icon.btn-sm{width:32px}
   .btn-icon.btn-xs{width:27px}
-  .btn-primary{background:var(--pink);color:#fff;border-color:var(--pink)}
-  .btn-primary:hover{background:var(--pink-ink);border-color:var(--pink-ink)}
-  .btn-primary:active{background:#6E3352;border-color:#6E3352}
+  .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+  .btn-primary:active{background:#094840;border-color:#094840}
   .btn-secondary{background:var(--pink);color:#fff;border-color:var(--pink)}
   .btn-secondary:hover{background:var(--pink-ink);border-color:var(--pink-ink)}
   .btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{background:var(--surface-3);border-color:#D7DBE1;color:var(--ink)}
   .btn-ghost:active{background:var(--surface-2)}
-  .btn-brand{background:var(--surface);color:var(--pink);border-color:var(--pink)}
-  .btn-brand:hover{background:var(--pink-soft);color:var(--pink-ink);border-color:var(--pink-ink)}
-  .btn-brand:active{background:#F4E1EA}
+  .btn-brand{background:var(--surface);color:var(--accent);border-color:var(--accent)}
+  .btn-brand:hover{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-ink)}
+  .btn-brand:active{background:#DBEBE8}
   .btn-subtle{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
   .btn-subtle:hover{background:#E8ECF0;border-color:#D7DBE1;color:var(--ink)}
   .btn-danger{background:var(--surface);color:var(--bad);border-color:var(--bad-line)}
@@ -420,7 +420,7 @@
   .pager{display:flex;align-items:center;gap:5px}
   .pg{min-width:30px;height:30px;padding:0 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;display:grid;place-items:center}
   .pg:hover{background:var(--surface-3)}
-  .pg.active{background:var(--pink-soft);color:var(--pink-ink);border-color:var(--pink-line)}
+  .pg.active{background:var(--accent-soft);color:var(--accent-ink);border-color:#C4D9D5}
   .pg:disabled{opacity:1;color:var(--ink-4);border-color:var(--line-2);cursor:not-allowed}
   .pg:disabled:hover{background:var(--surface)}
 
