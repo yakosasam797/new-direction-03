@@ -1132,10 +1132,11 @@
   .st-pick{
     display:inline-flex;
     align-items:center;
+    gap:6px;
     height:28px;
     padding:0 10px;
     border:1px solid var(--line);
-    border-radius:8px;
+    border-radius:999px;
     background-color:var(--surface);
     font-family:inherit;
     font-size:12px;
@@ -1146,24 +1147,60 @@
     max-width:100%;
     box-sizing:border-box;
   }
+  .st-dd{position:relative;display:inline-flex;vertical-align:middle;max-width:100%}
   .st-pick{
     appearance:none;
-    padding-right:24px;
+    padding-right:8px;
     cursor:pointer;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23545C67' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:right 7px center;
+    border:1px solid var(--line);
   }
-  .st-pick:hover{background-color:var(--surface-3)}
+  .st-pick .st-label{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .st-pick .st-caret{flex:none;opacity:.75;transition:transform .15s ease}
+  .st-dd.open .st-pick .st-caret{transform:rotate(180deg)}
+  .st-pick:hover{filter:brightness(.98)}
   .st-pick:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
-  .st-cap.st-open,.st-pick.st-open{background-color:var(--info-bg);color:var(--info);border-color:var(--info-line)}
-  .st-cap.st-progress,.st-pick.st-progress{background-color:var(--warn-bg);color:var(--warn);border-color:var(--warn-line)}
-  .st-cap.st-blocked,.st-pick.st-blocked{background-color:var(--bad-bg);color:var(--bad);border-color:var(--bad-line)}
-  .st-cap.st-done,.st-pick.st-done{background-color:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}
-  .st-pick.st-open:hover{background-color:#E6EAEF}
-  .st-pick.st-progress:hover{background-color:#F6E8C8}
-  .st-pick.st-blocked:hover{background-color:#F6E2E5}
-  .st-pick.st-done:hover{background-color:#DCEFDF}
+  .st-cap.st-open,.st-pick.st-open,.st-opt.st-open{background-color:var(--info-bg);color:var(--info);border-color:var(--info-line)}
+  .st-cap.st-progress,.st-pick.st-progress,.st-opt.st-progress{background-color:var(--warn-bg);color:var(--warn);border-color:var(--warn-line)}
+  .st-cap.st-blocked,.st-pick.st-blocked,.st-opt.st-blocked{background-color:var(--bad-bg);color:var(--bad);border-color:var(--bad-line)}
+  .st-cap.st-done,.st-pick.st-done,.st-opt.st-done{background-color:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}
+  .st-pick.st-open:hover,.st-opt.st-open:hover{background-color:#E6EAEF}
+  .st-pick.st-progress:hover,.st-opt.st-progress:hover{background-color:#F6E8C8}
+  .st-pick.st-blocked:hover,.st-opt.st-blocked:hover{background-color:#F6E2E5}
+  .st-pick.st-done:hover,.st-opt.st-done:hover{background-color:#DCEFDF}
+  .st-menu{
+    position:absolute;
+    top:calc(100% + 6px);
+    left:0;
+    z-index:80;
+    display:none;
+    flex-direction:column;
+    gap:4px;
+    min-width:max(100%,152px);
+    padding:6px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--surface);
+    box-shadow:0 12px 32px rgba(20,26,33,.16);
+  }
+  .st-dd.open .st-menu{display:flex}
+  .st-opt{
+    display:flex;
+    align-items:center;
+    width:100%;
+    height:30px;
+    padding:0 12px;
+    border:1px solid transparent;
+    border-radius:999px;
+    background:transparent;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:600;
+    line-height:1;
+    text-align:left;
+    cursor:pointer;
+    box-sizing:border-box;
+  }
+  .st-opt[aria-selected="true"]{box-shadow:inset 0 0 0 1px currentColor}
   .trv-card{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line-2)}
   .trv-card:last-child{border-bottom:none}
   .trv-main{flex:1;min-width:0}
@@ -2028,7 +2065,7 @@
                   <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="tsk-copy"><div class="primary-cell ell">Confirm Tamara Hotel</div><div class="muted-cell ell">Services · Tamara Hotel</div></div></div>
                   <div class="cell-lead tsk-who"><span class="avatar amber">NK</span><div style="min-width:0"><div class="ell primary-cell">Neha Kapoor</div><div class="muted-cell ell">Operations</div></div></div>
                   <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Today 4 PM</div>
-                  <div><select class="st-pick st-progress" aria-label="Task status"><option>Open</option><option selected>In progress</option><option>Blocked</option><option>Done</option></select></div>
+                  <div><div class="st-dd" data-value="In progress"><button type="button" class="st-pick st-progress" aria-label="Task status" aria-haspopup="listbox" aria-expanded="false"><span class="st-label">In progress</span><svg class="st-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="st-menu" role="listbox" aria-label="Task status"><button type="button" class="st-opt st-open" role="option" data-value="Open" aria-selected="false">Open</button><button type="button" class="st-opt st-progress" role="option" data-value="In progress" aria-selected="true">In progress</button><button type="button" class="st-opt st-blocked" role="option" data-value="Blocked" aria-selected="false">Blocked</button><button type="button" class="st-opt st-done" role="option" data-value="Done" aria-selected="false">Done</button></div></div></div>
                   <div class="row-acts"><button class="btn btn-brand btn-sm" type="button" data-tab-jump="services"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
                 </div>
                 <div class="row tsk-row" data-status="Open">
@@ -2036,7 +2073,7 @@
                   <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="tsk-copy"><div class="primary-cell ell">Collect Arjun's passport from guardian</div><div class="muted-cell ell">Documents · Arjun XYZ</div></div></div>
                   <div class="cell-lead tsk-who"><span class="avatar mint">MI</span><div style="min-width:0"><div class="ell primary-cell">Meera Iyer</div><div class="muted-cell ell">Operations</div></div></div>
                   <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Today 6 PM</div>
-                  <div><select class="st-pick st-open" aria-label="Task status"><option selected>Open</option><option>In progress</option><option>Blocked</option><option>Done</option></select></div>
+                  <div><div class="st-dd" data-value="Open"><button type="button" class="st-pick st-open" aria-label="Task status" aria-haspopup="listbox" aria-expanded="false"><span class="st-label">Open</span><svg class="st-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="st-menu" role="listbox" aria-label="Task status"><button type="button" class="st-opt st-open" role="option" data-value="Open" aria-selected="true">Open</button><button type="button" class="st-opt st-progress" role="option" data-value="In progress" aria-selected="false">In progress</button><button type="button" class="st-opt st-blocked" role="option" data-value="Blocked" aria-selected="false">Blocked</button><button type="button" class="st-opt st-done" role="option" data-value="Done" aria-selected="false">Done</button></div></div></div>
                   <div class="row-acts"><button class="btn btn-brand btn-sm" type="button" data-tab-jump="documents"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
                 </div>
                 <div class="row tsk-row" data-status="Open">
@@ -2044,7 +2081,7 @@
                   <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="tsk-copy"><div class="primary-cell ell">Assign vendor for return airport transfer</div><div class="muted-cell ell">Services · Hotel → Airport</div></div></div>
                   <div class="cell-lead tsk-who"><span class="avatar amber">NK</span><div style="min-width:0"><div class="ell primary-cell">Neha Kapoor</div><div class="muted-cell ell">Operations</div></div></div>
                   <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>13 Aug</div>
-                  <div><select class="st-pick st-open" aria-label="Task status"><option selected>Open</option><option>In progress</option><option>Blocked</option><option>Done</option></select></div>
+                  <div><div class="st-dd" data-value="Open"><button type="button" class="st-pick st-open" aria-label="Task status" aria-haspopup="listbox" aria-expanded="false"><span class="st-label">Open</span><svg class="st-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="st-menu" role="listbox" aria-label="Task status"><button type="button" class="st-opt st-open" role="option" data-value="Open" aria-selected="true">Open</button><button type="button" class="st-opt st-progress" role="option" data-value="In progress" aria-selected="false">In progress</button><button type="button" class="st-opt st-blocked" role="option" data-value="Blocked" aria-selected="false">Blocked</button><button type="button" class="st-opt st-done" role="option" data-value="Done" aria-selected="false">Done</button></div></div></div>
                   <div class="row-acts"><button class="btn btn-brand btn-sm" type="button" data-tab-jump="services"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
                 </div>
                 <div class="row tsk-row" data-status="Open">
@@ -2052,7 +2089,7 @@
                   <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="tsk-copy"><div class="primary-cell ell">Collect ₹75,000 customer balance</div><div class="muted-cell ell">Finance · Customer receivable</div></div></div>
                   <div class="cell-lead tsk-who"><span class="avatar pink">VJ</span><div style="min-width:0"><div class="ell primary-cell">Vrushabh Jain</div><div class="muted-cell ell">Owner</div></div></div>
                   <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>14 Aug</div>
-                  <div><select class="st-pick st-open" aria-label="Task status"><option selected>Open</option><option>In progress</option><option>Blocked</option><option>Done</option></select></div>
+                  <div><div class="st-dd" data-value="Open"><button type="button" class="st-pick st-open" aria-label="Task status" aria-haspopup="listbox" aria-expanded="false"><span class="st-label">Open</span><svg class="st-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="st-menu" role="listbox" aria-label="Task status"><button type="button" class="st-opt st-open" role="option" data-value="Open" aria-selected="true">Open</button><button type="button" class="st-opt st-progress" role="option" data-value="In progress" aria-selected="false">In progress</button><button type="button" class="st-opt st-blocked" role="option" data-value="Blocked" aria-selected="false">Blocked</button><button type="button" class="st-opt st-done" role="option" data-value="Done" aria-selected="false">Done</button></div></div></div>
                   <div class="row-acts"><button class="btn btn-brand btn-sm" type="button" data-tab-jump="finance"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
                 </div>
                 <div class="row tsk-row" data-status="Blocked">
@@ -2060,7 +2097,7 @@
                   <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="tsk-copy"><div class="primary-cell ell">Issue Tamara Hotel voucher</div><div class="muted-cell ell">Blocked by supplier confirmation</div></div></div>
                   <div class="cell-lead tsk-who"><span class="avatar amber">NK</span><div style="min-width:0"><div class="ell primary-cell">Neha Kapoor</div><div class="muted-cell ell">Operations</div></div></div>
                   <div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>—</div>
-                  <div><select class="st-pick st-blocked" aria-label="Task status"><option>Open</option><option>In progress</option><option selected>Blocked</option><option>Done</option></select></div>
+                  <div><div class="st-dd" data-value="Blocked"><button type="button" class="st-pick st-blocked" aria-label="Task status" aria-haspopup="listbox" aria-expanded="false"><span class="st-label">Blocked</span><svg class="st-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="st-menu" role="listbox" aria-label="Task status"><button type="button" class="st-opt st-open" role="option" data-value="Open" aria-selected="false">Open</button><button type="button" class="st-opt st-progress" role="option" data-value="In progress" aria-selected="false">In progress</button><button type="button" class="st-opt st-blocked" role="option" data-value="Blocked" aria-selected="true">Blocked</button><button type="button" class="st-opt st-done" role="option" data-value="Done" aria-selected="false">Done</button></div></div></div>
                   <div class="row-acts"><button class="btn btn-brand btn-sm" type="button" data-tab-jump="vouchers"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>
                 </div>
               </div>
@@ -2931,13 +2968,68 @@
     function refresh(){ applyOpen(); applyDone(); }
     window.refreshTskTables = refresh;
 
-    function paintStPick(sel){
-      if(!sel || !sel.classList.contains('st-pick')) return;
-      sel.classList.remove('st-open','st-progress','st-blocked','st-done');
-      var map = {'Open':'st-open','In progress':'st-progress','Blocked':'st-blocked','Done':'st-done'};
-      sel.classList.add(map[sel.value] || 'st-open');
+    function statusClass(v){
+      return ({'Open':'st-open','In progress':'st-progress','Blocked':'st-blocked','Done':'st-done'})[v] || 'st-open';
+    }
+    function stDdHtml(value){
+      var v = value || 'Open';
+      var cls = statusClass(v);
+      var opts = ['Open','In progress','Blocked','Done'].map(function(o){
+        return '<button type="button" class="st-opt '+statusClass(o)+'" role="option" data-value="'+o+'" aria-selected="'+(o===v?'true':'false')+'">'+o+'</button>';
+      }).join('');
+      return '<div class="st-dd" data-value="'+v+'">'+
+        '<button type="button" class="st-pick '+cls+'" aria-label="Task status" aria-haspopup="listbox" aria-expanded="false">'+
+        '<span class="st-label">'+v+'</span>'+
+        '<svg class="st-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'+
+        '</button><div class="st-menu" role="listbox" aria-label="Task status">'+opts+'</div></div>';
+    }
+    window.stDdHtml = stDdHtml;
+
+    function paintStPick(root){
+      var dd = root && root.classList && root.classList.contains('st-dd') ? root : (root && root.closest ? root.closest('.st-dd') : null);
+      if(!dd) return;
+      var v = dd.getAttribute('data-value') || 'Open';
+      var btn = dd.querySelector('.st-pick');
+      var label = dd.querySelector('.st-label');
+      if(btn){
+        btn.classList.remove('st-open','st-progress','st-blocked','st-done');
+        btn.classList.add(statusClass(v));
+      }
+      if(label) label.textContent = v;
+      dd.querySelectorAll('.st-opt').forEach(function(opt){
+        opt.setAttribute('aria-selected', opt.getAttribute('data-value') === v ? 'true' : 'false');
+      });
     }
     window.paintStPick = paintStPick;
+
+    function closeAllStDd(except){
+      document.querySelectorAll('.st-dd.open').forEach(function(dd){
+        if(except && dd === except) return;
+        dd.classList.remove('open');
+        var b = dd.querySelector('.st-pick');
+        if(b) b.setAttribute('aria-expanded','false');
+      });
+    }
+
+    function applyStatusChoice(dd, value){
+      var row = dd.closest('.row');
+      if(!row) return;
+      dd.setAttribute('data-value', value);
+      paintStPick(dd);
+      closeAllStDd();
+      row.setAttribute('data-status', value);
+      if(value === 'Done'){
+        var cell = dd.parentNode;
+        cell.innerHTML = '<span class="st-cap st-done">Done</span>';
+        row.classList.remove('tsk-row');
+        row.classList.add('tsk-done-row');
+        var cb = row.querySelector('.tsk-cbx');
+        if(cb){ cb.classList.remove('tsk-cbx'); cb.classList.add('tkd-cbx'); cb.classList.remove('on'); }
+        doneBody.appendChild(row);
+      }
+      refresh();
+    }
+
     var TEAM_CHIP = {
       'Vrushabh Jain': { i:'VJ', cls:'pink', role:'Owner' },
       'Neha Kapoor': { i:'NK', cls:'amber', role:'Operations' },
@@ -2957,29 +3049,36 @@
       function h(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
       return '<div class="cell-lead tsk-who"><span class="avatar '+cls+'">'+h(i)+'</span><div style="min-width:0"><div class="ell primary-cell">'+h(n)+'</div><div class="muted-cell ell">'+h(role)+'</div></div></div>';
     };
-    Array.prototype.forEach.call(document.querySelectorAll('.st-pick'), paintStPick);
+    Array.prototype.forEach.call(document.querySelectorAll('.st-dd'), paintStPick);
 
     if(search) search.addEventListener('input', applyOpen);
     if(filter) filter.addEventListener('change', applyOpen);
     if(doneSearch) doneSearch.addEventListener('input', applyDone);
 
-    openBody.addEventListener('change', function(e){
-      var sel = e.target.closest('.st-pick');
-      if(!sel) return;
-      var row = sel.closest('.row');
-      if(!row) return;
-      row.setAttribute('data-status', sel.value);
-      paintStPick(sel);
-      if(sel.value === 'Done'){
-        var cell = sel.parentNode;
-        cell.innerHTML = '<span class="st-cap st-done">Done</span>';
-        row.classList.remove('tsk-row');
-        row.classList.add('tsk-done-row');
-        var cb = row.querySelector('.tsk-cbx');
-        if(cb){ cb.classList.remove('tsk-cbx'); cb.classList.add('tkd-cbx'); cb.classList.remove('on'); }
-        doneBody.appendChild(row);
+    document.addEventListener('click', function(e){
+      var opt = e.target.closest('.st-opt');
+      if(opt){
+        var dd = opt.closest('.st-dd');
+        if(!dd || !openBody.contains(dd)) return;
+        e.preventDefault();
+        applyStatusChoice(dd, opt.getAttribute('data-value'));
+        return;
       }
-      refresh();
+      var btn = e.target.closest('.st-pick');
+      if(btn){
+        var dd = btn.closest('.st-dd');
+        if(!dd || !openBody.contains(dd)) return;
+        e.preventDefault();
+        var open = !dd.classList.contains('open');
+        closeAllStDd(open ? dd : null);
+        dd.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        return;
+      }
+      closeAllStDd();
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeAllStDd();
     });
   })();
 
@@ -3492,7 +3591,7 @@
             '<div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="tsk-copy"><div class="primary-cell ell">'+esc(val('tk-title'))+'</div><div class="muted-cell ell">'+esc(val('tk-related')||'General')+'</div></div></div>'+
             (window.tskTeamCell ? window.tskTeamCell(val('tk-assignee')||'—') : '<div class="muted-cell">'+esc(val('tk-assignee')||'—')+'</div>')+
             '<div class="date-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>'+esc(val('tk-due')||'—')+'</div>'+
-            '<div><select class="st-pick st-open" aria-label="Task status"><option selected>Open</option><option>In progress</option><option>Blocked</option><option>Done</option></select></div>'+
+            '<div>'+window.stDdHtml('Open')+'</div>'+
             '<div class="row-acts"><button class="btn btn-brand btn-sm" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open</button><button class="btn btn-ghost btn-sm btn-icon more-btn" type="button" data-tip="More" aria-label="More"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></div>';
           tb.appendChild(tr);
           if(window.refreshTskTables) window.refreshTskTables();
