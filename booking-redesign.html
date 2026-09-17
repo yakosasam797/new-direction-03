@@ -841,7 +841,7 @@
   #view-list .chrome{padding-top:4px}
   #view-list > .toolbar{margin-top:24px}
   .content{
-    --bk-cols:var(--check-col) minmax(220px,2.1fr) 132px 118px minmax(200px,1.35fr) minmax(148px,.85fr) 104px;
+    --bk-cols:var(--check-col) minmax(240px,2.1fr) 168px 118px minmax(220px,1.4fr) minmax(168px,.9fr) 112px;
     --svc-cols:minmax(180px,1.4fr) minmax(140px,.95fr) 92px 92px minmax(140px,.85fr) var(--act-col);
     --tsk-cols:var(--check-col) minmax(200px,1.7fr) minmax(200px,.95fr) 128px 148px var(--act-col);
     --trv-cols:var(--check-col) minmax(180px,1.6fr) minmax(148px,.9fr) 148px var(--act-col);
@@ -852,19 +852,24 @@
   }
   .sheet-bk .row-head,.sheet-bk .row{grid-template-columns:var(--bk-cols) var(--sheet-slack);min-width:0}
   .sheet-bk .bk-row{cursor:pointer}
-  .sheet-bk .row > :nth-child(2),
-  .sheet-bk .row > :nth-child(3),
-  .sheet-bk .row > :nth-child(5){
+  .sheet-bk .row > :nth-child(2).cell-lead{align-items:center}
+  .sheet-bk .row > :nth-child(3){
     flex-direction:column;
     align-items:flex-start;
     justify-content:center;
-    gap:3px;
+    gap:4px;
   }
+  .sheet-bk .row > :nth-child(5).cell-lead{align-items:flex-start}
+  .sheet-bk .row > :nth-child(5).cell-lead > svg{margin-top:2px}
   .bk-title{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.25}
   .bk-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-2)}
+  .bk-line{display:inline-flex;align-items:center;gap:6px;min-width:0}
+  .bk-line svg{color:var(--ink-2);flex:none}
   .bk-fin{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}
+  .bk-fin svg{color:var(--ink-2);flex:none}
   .bk-owner{display:flex;align-items:center;gap:6px;min-width:0}
   .bk-owner .avatar{width:26px;height:26px;font-size:11px;flex:none}
+  .bk-owner svg{color:var(--ink-2);flex:none}
   .bk-owner span{font-size:11.5px;color:var(--ink-2);font-weight:600;white-space:nowrap}
   .bk-empty{display:none;padding:48px var(--page-pad);color:var(--ink-2);font-size:13.5px;font-weight:500}
   .bk-empty.show{display:block}
@@ -1351,66 +1356,87 @@
     <div id="bkBody">
       <div class="row bk-row" data-open-booking data-stage="upcoming" data-queue="mine" tabindex="0" role="link" aria-label="Open XYZ Family Dubai">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">XYZ Family · Dubai</div><div class="bk-id">BK-2026-000003</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">18–22 Aug</div><div class="muted-cell">8d · 3 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">XYZ Family · Dubai</div><div class="bk-id">BK-2026-000003</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>18–22 Aug</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>8d · 3 pax</div>
+        </div>
         <div><span class="st-cap st-blocked">At risk</span></div>
-        <div style="min-width:0"><div class="ell primary-cell" data-tip="Confirm hotel with ABC DMC">Confirm hotel with ABC DMC</div><div class="muted-cell">Today · 4 PM</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹16,500</span><span class="st-cap st-blocked">Overdue</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Confirm hotel with ABC DMC">Confirm hotel with ABC DMC</div><div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Today · 4 PM</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹16,500</span><span class="st-cap st-blocked">Overdue</span></div>
         <div class="bk-owner"><span class="avatar pink">VJ</span><span>+2</span></div>
       </div>
       <div class="row bk-row" data-open-booking data-stage="upcoming" data-queue="mine" tabindex="0" role="link" aria-label="Open Sharma Family Goa">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">Sharma Family · Goa</div><div class="bk-id">BK-2026-000004</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">18–22 Aug</div><div class="muted-cell">8d · 2 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">Sharma Family · Goa</div><div class="bk-id">BK-2026-000004</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>18–22 Aug</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>8d · 2 pax</div>
+        </div>
         <div><span class="st-cap st-blocked">At risk</span></div>
-        <div style="min-width:0"><div class="ell primary-cell" data-tip="Confirm water sports add-on">Confirm water sports add-on</div><div class="muted-cell">12 Aug</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹48,000</span><span class="st-cap st-done">Settled</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Confirm water sports add-on">Confirm water sports add-on</div><div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>12 Aug</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹48,000</span><span class="st-cap st-done">Settled</span></div>
         <div class="bk-owner"><span class="avatar pink">VJ</span><span>+1</span></div>
       </div>
       <div class="row bk-row" data-open-booking data-stage="upcoming" data-queue="unassigned" tabindex="0" role="link" aria-label="Open Patel Family Manali">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">Patel Family · Manali</div><div class="bk-id">BK-2026-000006</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">24–28 Aug</div><div class="muted-cell">14d · 5 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">Patel Family · Manali</div><div class="bk-id">BK-2026-000006</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>24–28 Aug</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>14d · 5 pax</div>
+        </div>
         <div><span class="st-cap st-blocked">At risk</span></div>
-        <div style="min-width:0"><div class="ell primary-cell" data-tip="Request missing documents">Request missing documents</div><div class="muted-cell">10 Aug</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹15,000</span><span class="st-cap st-progress">To collect</span></div>
-        <div class="bk-owner"><span class="muted-cell">Unassigned</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Request missing documents">Request missing documents</div><div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 Aug</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹15,000</span><span class="st-cap st-progress">To collect</span></div>
+        <div class="bk-owner"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M17 8l5 5M22 8l-5 5"/></svg><span>Unassigned</span></div>
       </div>
       <div class="row bk-row" data-open-booking data-stage="travelling" data-queue="mine" tabindex="0" role="link" aria-label="Open Kapoor Family Jaipur">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">Kapoor Family · Jaipur</div><div class="bk-id">BK-2026-000010</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">12–19 Sep</div><div class="muted-cell">7d · 4 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">Kapoor Family · Jaipur</div><div class="bk-id">BK-2026-000010</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>12–19 Sep</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>7d · 4 pax</div>
+        </div>
         <div><span class="st-cap st-progress">On trip</span></div>
-        <div style="min-width:0"><div class="ell primary-cell" data-tip="Confirm airport pickup window">Confirm airport pickup window</div><div class="muted-cell">Today</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹8,200</span><span class="st-cap st-progress">To collect</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3V6a1 1 0 0 1 1-1h11v12h-2"/><path d="M14 9h4l3 4v4h-2"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg><div style="min-width:0"><div class="ell primary-cell" data-tip="Confirm airport pickup window">Confirm airport pickup window</div><div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Today</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹8,200</span><span class="st-cap st-progress">To collect</span></div>
         <div class="bk-owner"><span class="avatar pink">VJ</span><span>+1</span></div>
       </div>
       <div class="row bk-row" data-open-booking data-stage="completed" data-queue="mine" tabindex="0" role="link" aria-label="Open Singh Family Paris">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">Singh Family · Paris</div><div class="bk-id">BK-2026-000001</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">2–9 Aug</div><div class="muted-cell">7d · 2 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">Singh Family · Paris</div><div class="bk-id">BK-2026-000001</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>2–9 Aug</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>7d · 2 pax</div>
+        </div>
         <div><span class="st-cap st-done">Completed</span></div>
-        <div style="min-width:0"><div class="ell muted-cell">Trip closed</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹92,000</span><span class="st-cap st-done">Settled</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><div style="min-width:0"><div class="ell muted-cell">Trip closed</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹92,000</span><span class="st-cap st-done">Settled</span></div>
         <div class="bk-owner"><span class="avatar pink">VJ</span><span>+1</span></div>
       </div>
       <div class="row bk-row" data-open-booking data-stage="completed" data-queue="mine" tabindex="0" role="link" aria-label="Open Iyer Family Kerala">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">Iyer Family · Kerala</div><div class="bk-id">BK-2026-000002</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">20–27 Jul</div><div class="muted-cell">7d · 3 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">Iyer Family · Kerala</div><div class="bk-id">BK-2026-000002</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>20–27 Jul</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>7d · 3 pax</div>
+        </div>
         <div><span class="st-cap st-done">Completed</span></div>
-        <div style="min-width:0"><div class="ell muted-cell">Trip closed</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹64,500</span><span class="st-cap st-done">Settled</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg><div style="min-width:0"><div class="ell muted-cell">Trip closed</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹64,500</span><span class="st-cap st-done">Settled</span></div>
         <div class="bk-owner"><span class="avatar pink">VJ</span></div>
       </div>
       <div class="row bk-row" data-open-booking data-stage="cancelled" data-queue="unassigned" tabindex="0" role="link" aria-label="Open Reddy Family Bali">
         <div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div>
-        <div style="min-width:0"><div class="ell bk-title">Reddy Family · Bali</div><div class="bk-id">BK-2026-000005</div></div>
-        <div style="min-width:0"><div class="mono primary-cell">1–8 Oct</div><div class="muted-cell">7d · 4 pax</div></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">Reddy Family · Bali</div><div class="bk-id">BK-2026-000005</div></div></div>
+        <div>
+          <div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>1–8 Oct</div>
+          <div class="bk-line muted-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>7d · 4 pax</div>
+        </div>
         <div><span class="st-cap st-blocked">Cancelled</span></div>
-        <div style="min-width:0"><div class="ell muted-cell">Refund in progress</div></div>
-        <div class="bk-fin"><span class="mono primary-cell">₹22,000</span><span class="st-cap st-progress">Refund</span></div>
-        <div class="bk-owner"><span class="muted-cell">Unassigned</span></div>
+        <div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><div style="min-width:0"><div class="ell muted-cell">Refund in progress</div></div></div>
+        <div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="mono primary-cell">₹22,000</span><span class="st-cap st-progress">Refund</span></div>
+        <div class="bk-owner"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M17 8l5 5M22 8l-5 5"/></svg><span>Unassigned</span></div>
       </div>
     </div>
     <div class="bk-empty" id="bkEmpty">No bookings in this view</div>
@@ -3384,7 +3410,7 @@
           row.setAttribute('data-queue','mine');
           row.tabIndex = 0;
           row.setAttribute('role','link');
-          row.innerHTML = '<div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div><div style="min-width:0"><div class="ell bk-title">'+esc(name)+'</div><div class="bk-id">BK-NEW</div></div><div style="min-width:0"><div class="mono primary-cell">'+esc(val('db-start')||'—')+'</div><div class="muted-cell">Draft</div></div><div><span class="st-cap st-open">Draft</span></div><div style="min-width:0"><div class="ell primary-cell">Set up booking</div><div class="muted-cell">—</div></div><div class="bk-fin"><span class="st-cap st-done">Settled</span></div><div class="bk-owner"><span class="avatar pink">VJ</span></div>';
+          row.innerHTML = '<div class="cell-check"><div class="cbx bk-cbx" role="checkbox" tabindex="0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></div></div><div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div style="min-width:0"><div class="ell bk-title">'+esc(name)+'</div><div class="bk-id">BK-NEW</div></div></div><div><div class="bk-line mono primary-cell"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>'+esc(val('db-start')||'—')+'</div><div class="bk-line muted-cell">Draft</div></div><div><span class="st-cap st-open">Draft</span></div><div class="cell-lead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg><div style="min-width:0"><div class="ell primary-cell">Set up booking</div></div></div><div class="bk-fin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="st-cap st-done">Settled</span></div><div class="bk-owner"><span class="avatar pink">VJ</span></div>';
           var body = document.getElementById('bkBody') || sheet;
           body.appendChild(row);
           if(window.refreshbkBody) window.refreshbkBody();
