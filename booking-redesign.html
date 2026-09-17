@@ -121,8 +121,8 @@
   .credit{display:flex;align-items:center;gap:11px}
   .credit .ic{width:30px;height:30px;border-radius:8px;background:var(--side-hover);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);flex:none}
   .credit-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);font-weight:500}
-  .bar{height:4px;border-radius:999px;background:#E4E6EA;overflow:hidden;margin-top:5px}
-  .bar>i{display:block;height:100%;width:72%;background:var(--accent);border-radius:999px}
+  .bar{height:4px;border-radius:999px;background:var(--pink-line);overflow:hidden;margin-top:5px}
+  .bar>i{display:block;height:100%;width:72%;background:var(--pink);border-radius:999px}
   .btn-up{flex:none;height:30px;padding:0 13px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-family:'Onest',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
   .btn-up:hover{background:var(--accent-ink)}
 
@@ -140,15 +140,12 @@
   .topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--surface);flex:none;min-width:0}
   .back-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;flex:none}
   .back-btn:hover{background:var(--surface-3);color:var(--ink)}
-  .search{display:flex;align-items:center;gap:9px;height:36px;padding:0 6px 0 12px;border:1px solid var(--line);border-radius:10px;background:transparent;min-width:0}
+  .search{display:flex;align-items:center;gap:9px;height:36px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:transparent;min-width:0}
   .topbar .search{flex:0 1 340px;max-width:380px}
   .search:focus-within{border-color:var(--pink);background:var(--surface);box-shadow:0 0 0 3px rgba(165,83,126,.12)}
   .search input{flex:1;min-width:0;border:none;outline:none;background:transparent;font-family:inherit;font-size:13.5px;color:var(--ink)}
   .search input::placeholder{color:var(--ink-3)}
   .search > svg{color:var(--ink-2);flex:none}
-  .search-scope{display:flex;align-items:center;gap:5px;height:26px;padding:0 8px;border:1px solid var(--pink);border-radius:8px;background:var(--surface);color:var(--pink);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
-  .search-scope:hover{background:var(--pink-soft);color:var(--pink-ink)}
-  .search-scope svg{color:var(--pink)}
   .icon-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;position:relative;flex:none}
   .icon-btn:hover{background:var(--surface-3);color:var(--ink)}
   .acct{display:flex;align-items:center;gap:4px;height:36px;padding:0 8px 0 6px;border:1px solid var(--pink-line);border-radius:10px;background:var(--surface);color:var(--pink);font-family:'Onest',sans-serif;font-size:13px;font-weight:600;cursor:pointer;flex:none}
@@ -1305,7 +1302,6 @@
       <div class="search">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" placeholder="Search anything" aria-label="Search the workspace">
-        <button class="search-scope" data-tip="Change search scope" aria-label="Search scope: Query">Query<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
       <button class="icon-btn" data-tip="Settings" aria-label="Settings"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6 1.65 1.65 0 0 0 10 3.09V3a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.31.4.55.72.66"/></svg></button>
       <button class="icon-btn" data-tip="Help &amp; support" aria-label="Help and support"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></button>
